@@ -1,28 +1,33 @@
-SRC = push_swap.c
-
+SRCS = push_swap.c
 
 CC = gcc
 CFLAGES = -Wall -Wextra -Werror
 AR = ar rcs
 NAME = push_swap.a
-OBJ = $(SRC:.c=.o)
-LIB = llibft
-LIB_DIR = -L./libft
+OBJS = $(SRCS:.c=.o)
+LIBS = libft.a
+LIBS_DIR = ./libft_ps
 
 all : $(NAME)
 
-$(NAME) : $(OBJ)
-	$(AR) $@ $(OBJ)
+$(NAME) : $(OBJS) $(LIBS)
+	$(AR) $@ $(OBJS) $(LIBS)
 
-$(OBJ) : $(SRC)
-	$(CC) $(CFLAGES) -c $(SRC)
+$(OBJS) : $(SRCS)
+	$(CC) $(CFLAGES) -c $(SRCS)
+
+$(LIBS) : 
+	@make -C $(LIBS_DIR)	
+	@cp $(LIBS_DIR)/$(LIBS) .
+	make -C $(LIBS_DIR) fclean
 
 clean :
-	rm -f $(OBJ)
+	rm -f $(OBJS)
 
 fclean : clean
 	rm -f $(NAME)
+	rm -f  $(LIBS)
 
 re : fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re libft
