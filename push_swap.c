@@ -1,15 +1,17 @@
-#include "push_swap.h"
+// #include "push_swap.h"
 
-int   push_swap(int argc, char *argv[])
-{
-	// t_list		*stack_a;
-	// int			*sorted_arr[MAX];
+// int   push_swap(int argc, char *argv[])
+// {printf("OK\n");
+// 	t_list	**pointer = NULL;
+	
+// 	*pointer = 	get_arg(argc, argv);
+// 	while(((int*)(*pointer)->next) != NULL)
+// 	{
+// 		printf("%d\n", *(int*)((*pointer)->content));
+// 		*pointer = (*pointer)->next;
+// 	}
 
-	 get_arg(argc, argv);
-	return 0;
-}
+// 	return 0;
+// }
 
-int main(int argc, char *argv[])
-{
-	push_swap(argc, argv);
-}
+

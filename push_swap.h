@@ -2,8 +2,9 @@
 # define __PUSH_SWAP_H__
 
 #include <stdio.h>
-#include <stdlib.h>
 
+#include "./libft_ps/libft.h"
+#include <stdlib.h>
 #include <stdarg.h>
 #include <unistd.h>
 
@@ -16,15 +17,15 @@
 // }				t_stack;
 
 
-typedef struct			s_list
-{
-	struct s_list		*next;
-	int					*content;
-	int					size;
-}						t_list;
+// typedef struct			s_list
+// {
+// 	struct s_list		*next;
+// 	int					*content;
+// 	int					size;
+// }						t_list;
 
 
-int   push_swap(int argc, char *argv[]);
+int   		push_swap(int argc, char *argv[]);
 t_list		*get_arg(int argc, char *argv[]);
 char		**ft_split(char const *s, char c);
 

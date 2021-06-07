@@ -1,4 +1,5 @@
-SRCS = push_swap.c
+SRCS = push_swap.c\
+ps_get_arg.c
 
 CC = gcc
 CFLAGES = -Wall -Wextra -Werror
@@ -10,23 +11,22 @@ LIBS_DIR = ./libft_ps
 
 all : $(NAME)
 
-$(NAME) : $(OBJS)
+$(NAME) : $(OBJS) 
+	make all -C $(LIBS_DIR)	
+	@cp $(LIBS_DIR)/$(LIBS) $(NAME)
 	$(AR) $@ $(OBJS)
 
-$(OBJS) : $(SRCS) $(LIBS)
-	$(CC) $(CFLAGES) -c $(SRCS) -L$(LIBS_DIR) -lft
-
-$(LIBS) : 
-	@make -C $(LIBS_DIR)	
-	@cp $(LIBS_DIR)/$(LIBS) .
-	make -C $(LIBS_DIR) fclean
+$(OBJS) : $(SRCS)
+	$(CC) $(CFLAGES) -c $(SRCS) -I libft_ps
 
 clean :
 	rm -f $(OBJS)
+	make clean -C $(LIBS_DIR)
 
 fclean : clean
 	rm -f $(NAME)
-	rm -f  $(LIBS)
+	rm -f $(OBJS)
+	make fclean -C $(LIBS_DIR)
 
 re : fclean all
 
