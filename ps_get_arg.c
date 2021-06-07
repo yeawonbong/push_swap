@@ -6,6 +6,7 @@ t_list		*get_arg(int argc, char *argv[])
 	t_list	*stack_a;
 	int 	i;
 	int		j;
+	int		*p;
 
 	if (!argc || *argv)
 		return ERROR;
@@ -16,7 +17,8 @@ t_list		*get_arg(int argc, char *argv[])
 		temp = ft_split(argv[i++], ' '); //"1 23 4 이럴 경우를 염두, split"
 		while (temp[j])
 		{
-			ft_lstadd_back(&stack_a, ft_lstnew(temp[j]));
+			*p = atoi(temp[j]);
+			ft_lstadd_back(&stack_a, ft_lstnew(p));
 			free(temp[j]);
 			j++;
 		}

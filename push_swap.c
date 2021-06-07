@@ -2,7 +2,7 @@
 
 int   push_swap(int argc, char *argv[])
 {
-	t_list		*stack_a;
+	// t_list		*stack_a;
 	// int			*sorted_arr[MAX];
 
 	 get_arg(argc, argv);

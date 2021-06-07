@@ -10,11 +10,11 @@ LIBS_DIR = ./libft_ps
 
 all : $(NAME)
 
-$(NAME) : $(OBJS) $(LIBS)
-	$(AR) $@ $(OBJS) $(LIBS)
+$(NAME) : $(OBJS)
+	$(AR) $@ $(OBJS)
 
-$(OBJS) : $(SRCS)
-	$(CC) $(CFLAGES) -c $(SRCS)
+$(OBJS) : $(SRCS) $(LIBS)
+	$(CC) $(CFLAGES) -c $(SRCS) -L$(LIBS_DIR) -lft
 
 $(LIBS) : 
 	@make -C $(LIBS_DIR)	
