@@ -8,26 +8,22 @@
 #include <stdarg.h>
 #include <unistd.h>
 
-# define ERROR 	0;
-
-// typedef struct	s_stack
-// {
-// 	t_list		**a;
-// 	t_list		**b;
-// }				t_stack;
+# define ERROR 	0
 
 
-// typedef struct			s_list
-// {
-// 	struct s_list		*next;
-// 	int					*content;
-// 	int					size;
-// }						t_list;
+
+typedef struct			s_stack
+{
+	struct s_list		*a;
+    struct s_list       *b;
+}						t_stack;
 
 
 int   		push_swap(int argc, char *argv[]);
 t_list		*get_arg(int argc, char *argv[]);
 char		**ft_split(char const *s, char c);
+void    error(t_list *stack_a, t_list *stack_b);
+t_list		*pa(t_list *stack_a, t_list *stack_b);
 
 
 // typedef struct	t_arr

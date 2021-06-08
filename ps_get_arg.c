@@ -1,42 +1,29 @@
-// #include "push_swap.h"
+#include "push_swap.h"
 
-// t_list		*get_arg(int argc, char *argv[])
-// {
-// 	char	**temp;
-// 	t_list	*stack_a;
-// 	int 	i;
-// 	int		j;
-// 	int		*p = NULL;
+t_list		*get_arg(int argc, char *argv[])
+{
+	int i = 1;
+	int j = 0;
+	char **temp;
+	t_list *stack;
+    int atoied;
 
-// 	if (!argc || *argv)
-// 		return ERROR;
-// 	i = 1;
-// 	j = 0;
-// 	stack_a = ft_lstnew(p);
-// 	while(i < argc)
-// 	{
-// 		temp = ft_split(argv[i++], ' '); //"1 23 4 이럴 경우를 염두, split"
-// 		while (temp[j])
-// 		{
-// 			*p = atoi(temp[j]);
-// 			ft_lstadd_back(&stack_a, ft_lstnew(p));
-// 			free(temp[j]);
-// 			j++;
-// 		}
-// 		free(temp);
-// 	}
-
-
-
-// 	t_list	**pointer = NULL;
-	
-// 	*pointer = 	get_arg(argc, argv);
-// 	while(((int*)(*pointer)->next) != NULL)
-// 	{
-// 		printf("%d\n", *(int*)((*pointer)->content));
-// 		*pointer = (*pointer)->next;
-// 	}
-// 	//stack_a->size = ft_lstsize(stack_a);
-
-// 	return (stack_a);
-// }
+	if (argc < 2)
+		return ERROR;
+	while(i < argc)
+	{
+		temp = ft_split(argv[i++], ' '); //"1 23 4 이럴 경우를 염두, split"
+		while (temp[j])
+		{
+            if (ft_strlen(ft_itoa(atoied = ft_atoi(temp[j]))) != ft_strlen(temp[j]))
+                return ERROR;
+			ft_lstadd_back(&stack, ft_lstnew(atoied));
+			free(temp[j]);
+			j++;
+		}
+		j = 0;
+		free(temp);
+	}
+    stack->size = ft_lstsize(stack);
+	return (stack);
+}

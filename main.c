@@ -2,26 +2,37 @@
 
 int main(int argc, char *argv[])
 {
-	int i = 1;
-	int j = 0;
-	char **temp;
-	t_list *stack_a;
+	static	t_list *stack_a;
+	static	t_list *stack_b;
+	// t_stack	stack;
+	if ((stack_a = get_arg(argc, argv)) == ERROR)
+		error(stack_a, stack_b);
+	
 
+	
 
-	while(i < argc)
+		t_list	*p;
+	if(1) //연결리스트 출력
 	{
-		printf("%s\n", argv[i]);
-		temp = ft_split(argv[i++], ' '); //"1 23 4 이럴 경우를 염두, split"
-		while (temp[j])
+	
+		p = stack_a;
+		while (p)
 		{
-			printf("j is %d\n", j);
-			ft_lstadd_back(&stack_a, ft_lstnew(atoi(temp[j])));
-			free(temp[j]);
-			j++;
+			printf("stack content : %d\n", p->content);
+			p = p->next;
 		}
-		free(temp);
+	//	printf("stack content : %d\n", p->content); // tail
 	}
-	printf("content is %d\n", stack_a->content);
-printf ("hey\n");
+	stack_a = pa(stack_a, stack_b);
+		if(1) //연결리스트 출력
+	{
+		p = stack_a;
+		while (p)
+		{
+			printf("stack content : %d\n", p->content);
+			p = p->next;
+		}
+	//	printf("stack content : %d\n", p->content); // tail
+	}
     return 0;
 }

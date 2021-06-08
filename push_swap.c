@@ -1,15 +1,12 @@
-// #include "push_swap.h"
-
+#include "push_swap.h"
+void    error(t_list *stack_a, t_list *stack_b)
+{
+    ft_lstclear(&stack_a);
+    ft_lstclear(&stack_b);
+    write(1, "Error", 5);
+}
 // int   push_swap(int argc, char *argv[])
-// {printf("OK\n");
-// 	t_list	**pointer = NULL;
-	
-// 	*pointer = 	get_arg(argc, argv);
-// 	while(((int*)(*pointer)->next) != NULL)
-// 	{
-// 		printf("%d\n", *(int*)((*pointer)->content));
-// 		*pointer = (*pointer)->next;
-// 	}
+// {
 
 // 	return 0;
 // }

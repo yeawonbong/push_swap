@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ybong <ybong@student.42seoul.kr>           +#+  +:+       +#+         #
+#    By: ybong <ybong@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/28 00:12:32 by ybong             #+#    #+#              #
-#    Updated: 2021/01/22 02:55:00 by ybong            ###   ########.fr        #
+#    Updated: 2021/06/08 20:31:39 by ybong            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,15 +43,16 @@ ft_strmapi.c\
 ft_putchar_fd.c\
 ft_putstr_fd.c\
 ft_putendl_fd.c\
-ft_putnbr_fd.c
-
-SRC_BONUS = ft_lstnew.c\
-ft_lstadd_front.c\
+ft_putnbr_fd.c\
+ft_lstnew.c\
 ft_lstsize.c\
-ft_lstlast.c\
 ft_lstadd_back.c\
-ft_lstdelone.c\
 ft_lstclear.c\
+ft_lstlast.c
+
+
+SRC_BONUS = ft_lstadd_front.c\
+ft_lstdelone.c\
 ft_lstiter.c\
 ft_lstmap.c
 
