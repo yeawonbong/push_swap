@@ -20,9 +20,9 @@ typedef struct			s_stack
 
 
 int   		push_swap(int argc, char *argv[]);
-t_list		*get_arg(int argc, char *argv[]);
+t_list		*get_arg(int argc, char *argv[], t_list *stack);
 char		**ft_split(char const *s, char c);
-void    error(t_list *stack_a, t_list *stack_b);
+void    	error(t_list *stack_a, t_list *stack_b);
 t_list		*pa(t_list *stack_a, t_list *stack_b);
 
 

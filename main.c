@@ -5,7 +5,7 @@ int main(int argc, char *argv[])
 	static	t_list *stack_a;
 	static	t_list *stack_b;
 	// t_stack	stack;
-	if ((stack_a = get_arg(argc, argv)) == ERROR)
+	if ((stack_a = get_arg(argc, argv, stack_a)) == ERROR)
 		error(stack_a, stack_b);
 	
 
