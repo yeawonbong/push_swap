@@ -1,6 +1,7 @@
 SRCS = push_swap.c\
 ps_get_arg.c\
-ps_push.c
+ps_push.c\
+ps_stack.c
 
 CC = gcc
 CFLAGES = -Wall -Wextra -Werror
