@@ -1,23 +1,42 @@
 #include "push_swap.h"
+int		*arr_cpy(int *dst, int *src, int n)
+{
+	int i;
 
-int	*add_back(int *stack, int new)
+	i = 0;
+	while (i < n)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	return (dst);
+}
+
+t_stack		*add_back(t_stack *stack, int new)
 {
 	int		*temp;
-	size_t	arrlen;
 
-	arrlen = sizeof(stack) / 4;
-	if(!stack)
+	temp = NULL;
+	if(!(stack->a))
 	{
-		stack = malloc(sizeof(int));
-		*stack = new;
+		printf("first\n");
+		temp = malloc(sizeof(int));
+		*temp = new;
 	}
 	else
 	{
-		temp = malloc(sizeof(int) * (arrlen + 1));
-		ft_memmove(temp, stack, sizeof(stack));
-		temp[arrlen] = new;
+		temp = malloc(sizeof(int) * (stack->alen + 1));
+		temp = arr_cpy(temp, stack->a, stack->alen);
+		free(stack->a);
+		// temp = ft_memcpy(temp, stack->a, sizeof(int) * stack->alen);
+		temp[stack->alen] = new;
+		
+		for(int z = 0; z < (stack->alen); z++)
+			printf("stack temp의 %d번째 숫자: %d\n", z, temp[z]);
+
 	}
-	free(stack);
-	stack = temp;
+	stack->a = temp;
+	(stack->alen)++;
+	printf("SIZECHECK: %d\n", (stack->alen));
 	return (stack);
 }

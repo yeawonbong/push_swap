@@ -1,9 +1,9 @@
 #include "push_swap.h"
-void    error(t_list *stack_a, t_list *stack_b)
+void    free_all(t_stack *stack)
 {
-    ft_lstclear(&stack_a);
-    ft_lstclear(&stack_b);
-    write(1, "Error", 5);
+    free(stack->a);
+    free(stack->b);
+    free(stack);
 }
 // int   push_swap(int argc, char *argv[])
 // {

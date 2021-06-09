@@ -28,6 +28,7 @@ clean :
 fclean : clean
 	rm -f $(NAME)
 	rm -f $(OBJS)
+	rm -f *.out
 	make fclean -C $(LIBS_DIR)
 
 re : fclean all
