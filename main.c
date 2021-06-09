@@ -9,7 +9,6 @@ int main(int argc, char *argv[])
 		error_exit(stack);
 	push_swap(stack);
 	
-
 	
 	
 	
