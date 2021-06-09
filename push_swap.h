@@ -9,32 +9,44 @@
 #include <unistd.h>
 
 # define ERROR 	0
+# define A_BOTTOM stack->a[stack->alen - 1]
+# define B_BOTTOM stack->b[stack->blen - 1]
 
 
 
 typedef struct			s_stack
 {
 	int	*a;
-	int alen;
 	int	*b;
+	int alen;
 	int blen;
 }						t_stack;
 
 
-int   		push_swap(int argc, char *argv[]);
-t_stack		*get_arg(int argc, char *argv[], t_stack *stack);
-char		**ft_split(char const *s, char c);
-void    	free_all(t_stack *stack);
-t_list		*pa(t_list *stack_a, t_list *stack_b);
-t_stack		*add_back(t_stack *stack, int new);
+int   	push_swap(int argc, char *argv[]);
+t_stack	*get_arg(int argc, char *argv[], t_stack *stack);
+void    free_all(t_stack *stack);
+void    error_exit(t_stack *stack);
+
+int		*add_back(int *arr, int len, int new);
+int		*add_front(int *arr, int len, int new);
+int		*del_front(int *arr, int len);
+
+void	pa(t_stack *stack);
+void	pb(t_stack *stack);
+
+void 	sa(t_stack *stack);
+void	sb(t_stack *stack);
+void	ss(t_stack *stack);
+
+void    ra(t_stack *stack);
+void    rb(t_stack *stack);
+void	rr(t_stack *stack);
+void    rra(t_stack *stack);
+void    rrb(t_stack *stack);
+void	rrr(t_stack *stack);
 
 
-// typedef struct	t_arr
-// {
-// 	int			*arr[MAX];
-// 	int			top;
-// 	int			bottom;
-// }				s_arr;
 
 
 # endif

@@ -1,42 +1,66 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ps_stack.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/09 21:31:55 by ybong             #+#    #+#             */
+/*   Updated: 2021/06/09 21:31:55 by ybong            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
-int		*arr_cpy(int *dst, int *src, int n)
+
+int		*add_front(int *arr, int len, int new)
 {
-	int i;
+	int	*temp;
 
-	i = 0;
-	while (i < n)
+	if (!arr)
 	{
-		dst[i] = src[i];
-		i++;
-	}
-	return (dst);
-}
-
-t_stack		*add_back(t_stack *stack, int new)
-{
-	int		*temp;
-
-	temp = NULL;
-	if(!(stack->a))
-	{
-		printf("first\n");
 		temp = malloc(sizeof(int));
 		*temp = new;
 	}
 	else
 	{
-		temp = malloc(sizeof(int) * (stack->alen + 1));
-		temp = arr_cpy(temp, stack->a, stack->alen);
-		free(stack->a);
-		// temp = ft_memcpy(temp, stack->a, sizeof(int) * stack->alen);
-		temp[stack->alen] = new;
-		
-		for(int z = 0; z < (stack->alen); z++)
-			printf("stack temp의 %d번째 숫자: %d\n", z, temp[z]);
-
+		temp = malloc(sizeof(int) * (len + 1));
+		ft_memmove(&temp[1], arr, sizeof(int) * len);
+		free(arr);
+		temp[0] = new;
 	}
-	stack->a = temp;
-	(stack->alen)++;
-	printf("SIZECHECK: %d\n", (stack->alen));
-	return (stack);
+	arr = temp;
+	return (arr);
+}
+
+int		*add_back(int *arr, int len, int new)
+{
+	int	*temp;
+
+	temp = NULL;
+	if (!arr)
+	{
+		temp = malloc(sizeof(int));
+		*temp = new;
+	}
+	else
+	{
+		temp = malloc(sizeof(int) * (len + 1));
+		temp = ft_memcpy(temp, arr, sizeof(int) * len);
+		free(arr);
+		temp[len] = new;
+	}
+	return (temp);
+}
+
+int		*del_front(int *arr, int len)
+{
+	int	*temp;
+
+	temp = NULL;
+	if (!arr)
+		return (arr);
+	temp = malloc(sizeof(int) * (len - 1));
+	temp = ft_memcpy(temp, &arr[1], sizeof(int) * (len - 1));
+	free(arr);
+	return (temp);
 }

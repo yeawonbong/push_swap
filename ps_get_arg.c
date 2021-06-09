@@ -17,15 +17,19 @@ t_stack		*get_arg(int argc, char *argv[], t_stack *stack)
 		{
 			atoied = ft_atoi(temp[j]);
 			if (ft_strlen(itoaed = ft_itoa(atoied)) != ft_strlen(temp[j]))
+			{
+				free(itoaed);
 				return ERROR;
+			}
 			free(itoaed);
-			stack = add_back(stack, atoied);
+			// add_back(stack, atoied);
+			stack->a = add_back(stack->a, stack->alen, atoied);
+			(stack->alen)++;
 			free(temp[j]);
 			j++;
 	 	}
 		j = 0;
 		free(temp);
-
 	}
 	return(stack);
 	// for(int z = 0; z < (int)(sizeof(stack) / 4); z++)
