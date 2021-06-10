@@ -13,6 +13,10 @@
 # define B_BOTTOM stack->b[stack->blen - 1]
 
 
+# define A_TOPTWO 
+
+# define SMALLER 's'
+# define BIGGER 'b'
 
 typedef struct			s_stack
 {
@@ -23,7 +27,7 @@ typedef struct			s_stack
 }						t_stack;
 
 
-int   	push_swap(int argc, char *argv[]);
+int   	push_swap(t_stack *stack);
 t_stack	*get_arg(int argc, char *argv[], t_stack *stack);
 void    free_all(t_stack *stack);
 void    error_exit(t_stack *stack);
