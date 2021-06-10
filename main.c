@@ -9,12 +9,9 @@ int main(int argc, char *argv[])
 		error_exit(stack);
 	
 	
-	
-	
-	
 
 		if(1){	// 출력test
-			printf("^^^^^^^^^^Firt_Input^^^^^^^\n");
+			printf("^^^^^^^^^^Firt_Input^^^^^^^ㅣ\n");
 			for(int z = 0; z < (stack->alen); z++)
 				printf("stack a의 %d번째 숫자: %d\n", z, (stack->a)[z]);
 			printf("vvvvvvvvvvFirt_Inputvvvvvvvv\n\n");
