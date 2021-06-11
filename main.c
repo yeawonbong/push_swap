@@ -2,11 +2,13 @@
 
 void	sort_arg(t_stack *stack, int size)
 {
-	int arr[size];
+	int *arr;
 	int	temp;
 	int	i;
 
 	i = 0;
+	if (!(arr = malloc(sizeof(int) * size)))
+		error_exit(stack);
 	ft_memcpy(arr, stack->a, sizeof(int) * size);
 	while (i < size - 1)
 	{
@@ -48,13 +50,26 @@ int main(int argc, char *argv[])
 	// printf("================SORTED_===========\n");
 	// for(int z = 0; z < (stack->alen); z++)
 	// 	printf("sorted_arr의 %d번째 숫자: %d\n", z, (stack->sorted_arr)[z]);
-			while(stack->blen < stack->sortedlen / 2)
-				group1_to_stackb(stack);
-			
+			group1_to_stackb(stack);
+			group2_to_stackb(stack);
+			sort(stack);
 			printf("^^^^^^^^^^group 1 in stack a^^^^^^^ㅣ\n");
 			for(int z = 0; z < (stack->alen); z++)
 				printf("stack a의 %d번째 숫자: %d\n", z, (stack->a)[z]);
 			printf("vvvvvvvvvvgroup 1 in stack avvvvvvvv\n\n");
+
+			printf("^^^^^^^^^^group 2 in stack b^^^^^^^ㅣ\n");
+			for(int z = 0; z < (stack->blen); z++)
+				printf("stack b의 %d번째 숫자: %d\n", z, (stack->b)[z]);
+			printf("vvvvvvvvvvgroup 2 in stack bvvvvvvvv\n\n");
+	
+			// rb(stack);
+			// printf("^^^^^^^^^^AFTER RP stack b^^^^^^^ㅣ\n");
+			// for(int z = 0; z < (stack->blen); z++)
+			// 	printf("stack b의 %d번째 숫자: %d\n", z, (stack->b)[z]);
+			// printf("vvvvvvvvvvAFTER RP stack bvvvvvvvv\n\n");
+			printf("0000000000000000000000000\n0000[ COUNT IS : %d ]0000\n0000000000000000000000000\n", stack->count);
+	printf("SORTED_BOTTOM IS : %d\n", SORTED_BOTTOM);
 		}
 	free_all(stack);
 	system("leaks a.out > leaks_result_temp; cat leaks_result_temp | grep leaked && rm -rf leaks_result_temp");

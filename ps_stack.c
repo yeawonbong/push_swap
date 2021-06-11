@@ -28,8 +28,7 @@ int		*add_front(int *arr, int len, int new)
 		free(arr);
 		temp[0] = new;
 	}
-	arr = temp;
-	return (arr);
+	return (temp);
 }
 
 int		*add_back(int *arr, int len, int new)

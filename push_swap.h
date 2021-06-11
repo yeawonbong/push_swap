@@ -14,6 +14,8 @@
 # define A_BOTTOM stack->a[stack->alen - 1]
 # define B_BOTTOM stack->b[stack->blen - 1]
 
+# define SORTED_TOP stack->sorted_arr[0]
+# define SORTED_BOTTOM stack->sorted_arr[stack->sortedlen - 1]
 # define PIVOT stack->sorted_arr[stack->sortedlen / 2] //가운데 숫자 (group 나누는 기준)
 
 # define A_TOPTWO 
@@ -29,6 +31,7 @@ typedef struct			s_stack
 	int	blen;
 	int	*sorted_arr;
 	int sortedlen;
+	int count;
 }						t_stack;
 
 
@@ -42,11 +45,13 @@ int		*add_front(int *arr, int len, int new);
 int		*del_front(int *arr, int len);
 
 void	group1_to_stackb(t_stack *stack);
+void	group2_to_stackb(t_stack *stack);
 
-void	a_to_b_if(char to_b, t_stack *stack);
+void	post_pb(t_stack *stack);
 void    totop_if(char toswap, t_stack *stack, char stacknum);
 void	tobottom_if(char tobottom, t_stack *stack, char stacknum);
 
+void	sort(t_stack *stack);
 
 /*
 ** push_swap_functions

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_reverse_rotate.c                                :+:      :+:    :+:   */
+/*   psf_reverse_rotate.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ybong <ybong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 21:24:06 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/09 21:35:37 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/12 04:52:15 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	rra(t_stack *stack)
 	ft_memmove(&stack->a[1], stack->a, sizeof(int) * (stack->alen - 1));
 	*stack->a = temp;
 	write(1, "rra\n", 4);
+	stack->count++;
 }
 
 void	rrb(t_stack *stack)
@@ -34,6 +35,7 @@ void	rrb(t_stack *stack)
 	ft_memmove(&stack->b[1], stack->b, sizeof(int) * (stack->blen - 1));
 	*stack->b = temp;
 	write(1, "rrb\n", 4);
+	stack->count++;
 }
 
 void	rrr(t_stack *stack)
@@ -55,4 +57,5 @@ void	rrr(t_stack *stack)
 		*stack->b = temp;
 	}
 	write(1, "rrr\n", 4);
+	stack->count++;
 }

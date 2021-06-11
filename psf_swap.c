@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_swap.c                                          :+:      :+:    :+:   */
+/*   psf_swap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ybong <ybong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 20:19:03 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/10 16:15:20 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/12 04:52:46 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,26 @@ void	sa(t_stack *stack)
 {
 	int temp;
 
-	if (!stack->a || !stack->a[1])
+	if (!stack->a || stack->alen < 2)
 		return ;
 	temp = stack->a[0];
 	stack->a[0] = stack->a[1];
 	stack->a[1] = temp;
 	write(1, "sa\n", 3);
+	stack->count++;
 }
 
 void	sb(t_stack *stack)
 {
 	int temp;
 
-	if (!stack->b || !stack->b[1])
+	if (!stack->b || stack->blen < 2)
 		return ;
 	temp = stack->b[0];
 	stack->b[0] = stack->b[1];
 	stack->b[1] = temp;
 	write(1, "sb\n", 3);
+	stack->count++;
 }
 
 void	ss(t_stack *stack)
@@ -55,4 +57,5 @@ void	ss(t_stack *stack)
 		stack->b[1] = temp;
 	}
 	write(1, "ss\n", 3);
+	stack->count++;
 }

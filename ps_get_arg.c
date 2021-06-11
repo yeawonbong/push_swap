@@ -22,7 +22,6 @@ t_stack		*get_arg(int argc, char *argv[], t_stack *stack)
 				return ERROR;
 			}
 			free(itoaed);
-			// add_back(stack, atoied);
 			stack->a = add_back(stack->a, stack->alen, atoied);
 			(stack->alen)++;
 			free(temp[j]);
@@ -32,6 +31,4 @@ t_stack		*get_arg(int argc, char *argv[], t_stack *stack)
 		free(temp);
 	}
 	return(stack);
-	// for(int z = 0; z < (int)(sizeof(stack) / 4); z++)
-	// 	printf("stack a의 %d번째 숫자: %d\n", z, stack->a[z]);
 }
