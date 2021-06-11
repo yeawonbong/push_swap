@@ -14,7 +14,20 @@ void    error_exit(t_stack *stack)
 	exit(EXIT_FAILURE);
 }
 
-void    swap_if(char toswap, t_stack *stack, char stacknum)
+void	a_to_b_if(char to_b, t_stack *stack)
+{
+		if (stack->a[0] < PIVOT && stack->a[1] < PIVOT)
+			totop_if(to_b, stack, 'a'); // 더 큰 수를 위로 보내
+		else //하나만 group 1인 경우
+			totop_if(SMALLER, stack, 'a'); // 더 작은 수 (group1)
+		pb(stack);
+		//-----pb 후처리----bottom보다 작으면 밑으로 보내고, top2 더 큰 수가 위에 있도록
+		if (2 <= stack->blen && B_TOP < B_BOTTOM) 
+			rb(stack);
+		totop_if(BIGGER, stack, 'b');
+}
+
+void    totop_if(char toswap, t_stack *stack, char stacknum)
 {
 	int		**st;
 	void 	(*swap)(t_stack *stack);
@@ -32,21 +45,23 @@ void	tobottom_if(char tobottom, t_stack *stack, char stacknum)
 {
 	int		**st;
 	int		bottom;
+	// char	opp_tobottom;
 	void 	(*rotate)(t_stack *stack);
 
 	st = stacknum == 'a' ? &stack->a : &stack->b;
 	bottom = stacknum == 'a' ? A_BOTTOM : B_BOTTOM;
+	// opp_tobottom = tobottom == SMALLER ? BIGGER : SMALLER;
 	rotate = stacknum == 'a' ? ra : rb;
 
-	if (bottom < st[0] && bottom < st[1])
-		swap_if(SMALLER, stack, stacknum);
-	else
-		swap_if(BIGGER, stack, stacknum);
+	// if (bottom < *st[0] && bottom < *st[1])
+	// 	totop_if(opp_tobottom, stack, stacknum);
+	// else
+	totop_if(tobottom, stack, stacknum);
 	rotate(stack);
 	// }
 	// if (SMALLER == tobottom && (bottom > st[0] || bottom > st[1]))
 	// {
-	// 	swap_if(SMALLER, stack, stacknum);
+	// 	totop_if(SMALLER, stack, stacknum);
 	// 	rotate(stack);
 	// }
 }
