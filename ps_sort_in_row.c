@@ -21,7 +21,15 @@ void	sort(t_stack *stack)
 	{
 		if (B_TOP == SORTED_TOP)
 			rb(stack);
-		if (stack->b[0] == stack->sorted_arr[i] || stack->b[1] == stack->sorted_arr[i])
+		if (B_BOTTOM == stack->sorted_arr[i] || stack->b[stack->blen - 2] == stack->sorted_arr[i])
+		{
+			rrb(stack);
+			if (B_BOTTOM == stack->sorted_arr[i])
+				rrb(stack);
+			pa(stack);
+			i--;
+		}
+		else if (stack->b[0] == stack->sorted_arr[i] || stack->b[1] == stack->sorted_arr[i])
 		{
 			if (stack->b[1] == stack->sorted_arr[i])
 				sb(stack);
@@ -33,3 +41,5 @@ void	sort(t_stack *stack)
 	}
 	pa(stack); // sorted_arr[0], 즉 SORTED_TOP, 마지막 수만 남아있고, 이것을 pa
 }
+
+// void	div_sort()

@@ -51,8 +51,8 @@ int main(int argc, char *argv[])
 	// for(int z = 0; z < (stack->alen); z++)
 	// 	printf("sorted_arr의 %d번째 숫자: %d\n", z, (stack->sorted_arr)[z]);
 			group1_to_stackb(stack);
-			group2_to_stackb(stack);
-			sort(stack);
+			// group2_to_stackb(stack);
+			// sort(stack);
 			printf("^^^^^^^^^^group 1 in stack a^^^^^^^ㅣ\n");
 			for(int z = 0; z < (stack->alen); z++)
 				printf("stack a의 %d번째 숫자: %d\n", z, (stack->a)[z]);
