@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 20:40:01 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/12 04:51:58 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/16 21:33:28 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ void	pa(t_stack *stack)
 {
 	int	temp;
 
-	if (!stack->b)
+	if (!stack->blen)
 		return ;
 	temp = *stack->b;
 	stack->b = del_front(stack->b, stack->blen);
 	stack->a = add_front(stack->a, stack->alen, temp);
 	stack->blen--;
 	stack->alen++;
-	write(1, "pa\n", 3);
+	write(1, "pa\n", 3); 
 	stack->count++;
 }
 
@@ -31,7 +31,7 @@ void	pb(t_stack *stack)
 {
 	int	temp;
 
-	if (!stack->a)
+	if (!stack->alen)
 		return ;
 	temp = *stack->a;
 	stack->a = del_front(stack->a, stack->alen);

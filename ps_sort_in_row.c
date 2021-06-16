@@ -128,69 +128,86 @@
 int		search_from_top(t_stack *stack, int n, int tofind)
 {
 	int tempidx;
+	int		fromtop;
+	int		frombottom;
+	void 	(*till_tofind)(t_stack *stack);
 
-	tempidx = 0;
+	fromtop = -1;
+	frombottom = -1;
 	while (0 <= n)
 	{
 		while (stack->pivot[n] <= B_TOP || stack->pivot[n] <= B_BOTTOM) // 해당 그룹이 stack->b에 남아있을 때까지
 		{
-			while (stack->pivot[n] <= stack->b[tempidx]) // TOP 탐색 75~
-			{
-				if (stack->b[tempidx] == stack->sorted_arr[tofind]) //B_TOP 탐색
-				{
-					while (0 < tempidx--)
-					{
-						rb(stack);
-					printf("TEMPIDX IS : %d\n", tempidx);
-					
-					}
-					pa(stack);
-					tempidx = 0;
-					tofind--; printf("TO FIND -- : %d\n", tofind);
-	// ㅅㅂ... 	
+			printf("{{{{{{{{{{{{{{{{{{{{{여기WHILE_____IN}}}}}}}}}}}}}}\n");
+
+			while (stack->pivot[n] <= stack->b[fromtop]) // TOP 탐색 tofind인덱스 찾기
+			{printf("{{{{{{{{{{{{{{{{{{{{{TOP_____IN}}}}}}}}}}}}}}\n");
+				if (stack->b[fromtop] == stack->sorted_arr[tofind])
+				{printf("TOP찾았다찾았다\n");
 					break ;
-					// return (tofind);
 				}
-				else
-					tempidx++;
+				else{
+					fromtop++; printf("fromtop ++ ing in TOP :: %d\n", fromtop);
+				}
 			}
-			tempidx = 0;
-			while (stack->pivot[n] <= stack->b[stack->blen - 1 - tempidx]) // B_BOTTOM 탐색
-			{
-				if (stack->b[stack->blen - 1 - tempidx] == stack->sorted_arr[tofind]) //B_BOTTOM부터 탐색
-				{
-					while (0 <= tempidx--)
-					{
-						rrb(stack);
-					printf("TEMPIDX IS : %d\n", tempidx);
-					
-					}
-					pa(stack);
-					tempidx = 0;
-					tofind--; printf("TO FIND -- : %d\n", tofind);
+			while (stack->pivot[n] <= stack->b[stack->blen - 1 - frombottom]) // B_BOTTOM 탐색
+			{printf("{{{{{{{{{{{{{{{{{{{{{BOTTOM_____IN}}}}}}}}}}}}}}\n");
+				if (stack->b[stack->blen - 1 - frombottom] == stack->sorted_arr[tofind]) //B_BOTTOM부터 탐색
+				{printf("BOTTOM찾았다찾았다\n");
 					break;
-					//return (tofind);/////////////////리턴 말고 고쳐봐바.
 				}
-				else 
-				tempidx++;
+				else{
+					frombottom++; printf("frombottom ++ ing in BOTTOM :: %d\n", frombottom);
+				}
 			}
-		// else
-		// 	rb(stack);
+			printf("-----TOP AND BOTTOM IDX : %d AND %d\n" ,fromtop, frombottom);
+			if (0 < fromtop && 0 <frombottom)
+			{
+				frombottom++;
+				tempidx = fromtop <= frombottom ? fromtop : frombottom;
+				till_tofind = fromtop <= frombottom ? rb : rrb;
+			}
+			else
+			{
+				tempidx = frombottom == -1 ? fromtop : frombottom + 1;
+				till_tofind = frombottom == -1 ? rb : rrb;
+
+			}
+			fromtop = -1;
+			frombottom = -1;
+			while (0 < tempidx--)
+			{
+				till_tofind(stack);
+				// printf("TEMPIDX IS : %d\n", tempidx);
+			}
+			printf("지금 B_TOP은 %d\n", B_TOP);
+			if (B_TOP == stack->sorted_arr[tofind])
+			{
+				pa(stack);
+				printf("pa한 숫자는 : %d\n", A_TOP);
+				tofind--; printf("TO FIND -- : %d\n", stack->sorted_arr[tofind]);
+			}
+			if (!tofind)
+				break ;
 		}
-		n--; printf("NNNNNNNNNNNNNNNNNNN (PIVOT) IDX IS : %d\n", n);
+		n--; 
+			// if (1)
+			// {
+			// 	printf("NNNNNNNNNNNNNNNNNNN (PIVOT) IDX IS : %d\n", n);
+			// 	printf("NNNNNNNNNNNNNNNNNNN (PIVOT) NUM IS : %d\n", stack->pivot[n]);
 
-				printf("^^^^^^^^^^stack a^^^^^^^ㅣ\n");
-				for(int z = 0; z < (stack->alen); z++)
-					printf("stack a의 %d번째 숫자: %d\n", z, (stack->a)[z]);
-				printf("vvvvvvvvvvstack avvvvvvvv\n\n");
+			// 	printf("^^^^^^^^^^stack a^^^^^^^ㅣ\n");
+			// 	for(int z = 0; z < (stack->alen); z++)
+			// 		printf("stack a의 %d번째 숫자: %d\n", z, (stack->a)[z]);
+			// 	printf("vvvvvvvvvvstack avvvvvvvv\n\n");
 
-				printf("^^^^^^^^^^stack b^^^^^^^ㅣ\n");
-				for(int z = 0; z < (stack->blen); z++)
-					printf("stack b의 %d번째 숫자: %d\n", z, (stack->b)[z]);
-				printf("vvvvvvvvvvstack bvvvvvvvv\n\n");
-
-
+			// 	printf("^^^^^^^^^^stack b^^^^^^^ㅣ\n");
+			// 	for(int z = 0; z < (stack->blen); z++)
+			// 		printf("stack b의 %d번째 숫자: %d\n", z, (stack->b)[z]);
+			// 	printf("vvvvvvvvvvstack bvvvvvvvv\n\n");
+			// }
 	}
+	pa(stack);
 	return (tofind);
 }
 
@@ -231,31 +248,16 @@ int		search_from_top(t_stack *stack, int n, int tofind)
 // 	return (tofind);
 // }
 
-void	sort_stack(t_stack *stack)
-{
-	int tofind;
-	int n;
+// void	sort_stack(t_stack *stack)
+// {
+// 	int tofind;
+// 	int n;
 
-	tofind = stack->sortedlen - 3;
-	n = 2;
-	while (n) //조건 다른 거 줘도 됨 
-	{
-		// if (n % 2)
-		// 	tofind = search_from_bottom(stack, n, tofind);
-		// else
-		tofind = search_from_top(stack, n, tofind);
-		n--;
-		// printf("TOFIND NOW IS : %d\n", tofind);
-		// 			printf("^^^^^^^^^^stack a^^^^^^^ㅣ\n");
-		// 	for(int z = 0; z < (stack->alen); z++)
-		// 		printf("stack a의 %d번째 숫자: %d\n", z, (stack->a)[z]);
-		// 	printf("vvvvvvvvvvstack avvvvvvvv\n\n");
-
-		// 	printf("^^^^^^^^^^stack b^^^^^^^ㅣ\n");
-		// 	for(int z = 0; z < (stack->blen); z++)
-		// 		printf("stack b의 %d번째 숫자: %d\n", z, (stack->b)[z]);
-		// 	printf("vvvvvvvvvvstack bvvvvvvvv\n\n");
-	
-	}
-	pa(stack);
-}
+// 	tofind = stack->sortedlen - 3;
+// 	n = 3;
+// 	while (0 <= n) //조건 다른 거 줘도 됨 
+// 	{
+// 		tofind = search_from_top(stack, n, tofind);
+// 	}
+// 	pa(stack);
+// }

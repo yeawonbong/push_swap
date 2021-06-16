@@ -34,26 +34,29 @@ int main(int argc, char *argv[])
 	stack = malloc(sizeof(t_stack));
 	if(((stack = get_arg(argc, argv, stack))) == ERROR)
 		error_exit(stack);
-	
 
-	//밑에 그룹부터 sort, solution 해결
-
-		if(1){	// 출력test
+		if(1){	// INPUT 출력
 			printf("^^^^^^^^^^Firt_Input^^^^^^^ㅣ\n");
 			for(int z = 0; z < (stack->alen); z++)
 				printf("stack a의 %d번째 숫자: %d\n", z, (stack->a)[z]);
 			printf("vvvvvvvvvvFirt_Inputvvvvvvvv\n\n");
-			
+		}
+
+		if(1){  // SORTING TEST
 			sort_arg(stack, stack->alen);
 			set_pivot(stack);
 			group1_to_stackb(stack);
 			group2_to_stackb(stack);
-		// sort_stack(stack);
-printf("TOFIND FIN : %d\n", search_from_top(stack, 3, 97));
+			printf("*********FIN_SORT_IN_STACK B**********\n");
+		}
 
 
-		// printf("TOFIND NOW IS : %d\n", tofind);
-					printf("^^^^^^^^^^stack a^^^^^^^ㅣ\n");
+
+
+
+		int tofind = 97;
+	printf("TOFIND FIN : %d\n", tofind = search_from_top(stack, 3, tofind));
+			printf("^^^^^^^^^^stack a^^^^^^^ㅣ\n");
 			for(int z = 0; z < (stack->alen); z++)
 				printf("stack a의 %d번째 숫자: %d\n", z, (stack->a)[z]);
 			printf("vvvvvvvvvvstack avvvvvvvv\n\n");
@@ -64,7 +67,7 @@ printf("TOFIND FIN : %d\n", search_from_top(stack, 3, 97));
 			printf("vvvvvvvvvvstack bvvvvvvvv\n\n");
 
 			printf("0000000000000000000000000\n0000[ COUNT IS : %d ]0000\n0000000000000000000000000\n", stack->count);
-		}
+		
 	free_all(stack);
 	system("leaks a.out > leaks_result_temp; cat leaks_result_temp | grep leaked && rm -rf leaks_result_temp");
 	// system("leaks a.out");
