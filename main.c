@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
 		error_exit(stack);
 	
 
-	
+	//밑에 그룹부터 sort, solution 해결
 
 		if(1){	// 출력test
 			printf("^^^^^^^^^^Firt_Input^^^^^^^ㅣ\n");
@@ -44,32 +44,26 @@ int main(int argc, char *argv[])
 				printf("stack a의 %d번째 숫자: %d\n", z, (stack->a)[z]);
 			printf("vvvvvvvvvvFirt_Inputvvvvvvvv\n\n");
 			
-			// group1_to_stackb(stack);
-			// push_swap(stack);
 			sort_arg(stack, stack->alen);
-	// printf("================SORTED_===========\n");
-	// for(int z = 0; z < (stack->alen); z++)
-	// 	printf("sorted_arr의 %d번째 숫자: %d\n", z, (stack->sorted_arr)[z]);
+			set_pivot(stack);
 			group1_to_stackb(stack);
-			// group2_to_stackb(stack);
-			// sort(stack);
-			printf("^^^^^^^^^^group 1 in stack a^^^^^^^ㅣ\n");
+			group2_to_stackb(stack);
+		// sort_stack(stack);
+printf("TOFIND FIN : %d\n", search_from_top(stack, 3, 97));
+
+
+		// printf("TOFIND NOW IS : %d\n", tofind);
+					printf("^^^^^^^^^^stack a^^^^^^^ㅣ\n");
 			for(int z = 0; z < (stack->alen); z++)
 				printf("stack a의 %d번째 숫자: %d\n", z, (stack->a)[z]);
-			printf("vvvvvvvvvvgroup 1 in stack avvvvvvvv\n\n");
+			printf("vvvvvvvvvvstack avvvvvvvv\n\n");
 
-			printf("^^^^^^^^^^group 2 in stack b^^^^^^^ㅣ\n");
+			printf("^^^^^^^^^^stack b^^^^^^^ㅣ\n");
 			for(int z = 0; z < (stack->blen); z++)
 				printf("stack b의 %d번째 숫자: %d\n", z, (stack->b)[z]);
-			printf("vvvvvvvvvvgroup 2 in stack bvvvvvvvv\n\n");
-	
-			// rb(stack);
-			// printf("^^^^^^^^^^AFTER RP stack b^^^^^^^ㅣ\n");
-			// for(int z = 0; z < (stack->blen); z++)
-			// 	printf("stack b의 %d번째 숫자: %d\n", z, (stack->b)[z]);
-			// printf("vvvvvvvvvvAFTER RP stack bvvvvvvvv\n\n");
+			printf("vvvvvvvvvvstack bvvvvvvvv\n\n");
+
 			printf("0000000000000000000000000\n0000[ COUNT IS : %d ]0000\n0000000000000000000000000\n", stack->count);
-	printf("SORTED_BOTTOM IS : %d\n", SORTED_BOTTOM);
 		}
 	free_all(stack);
 	system("leaks a.out > leaks_result_temp; cat leaks_result_temp | grep leaked && rm -rf leaks_result_temp");
