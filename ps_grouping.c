@@ -32,15 +32,10 @@ void	group1_to_stackb(t_stack *stack) //group1을 stack_b로 보냄
 	n = 1; // 25
 	while (stack->blen < HALF)
 	{
-		if (stack->a[0] < HALF || stack->a[1] < HALF)
-		{
-			if (stack->a[0] < HALF && stack->a[1] < HALF) // 둘 다 group1 아니면, 더 작은 수 - less than HALF해당하는 수를 b로 보내
-				pb_if(NONE, stack, n);
-			else
-				pb_if(SMALLER, stack, n);
-		}
+		if (A_TOP < HALF)
+			pb_if(NONE, stack, n);
 		else
-			tobottom_if(NONE, stack, 'a'); 
+			tobottom_if(NONE, stack, 'a');
 	}
 }
 

@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
 
 
 
-		int tofind = 97;
+		int tofind = 497;
 	printf("TOFIND FIN : %d\n", tofind = search_from_top(stack, 3, tofind));
 			printf("^^^^^^^^^^stack a^^^^^^^ㅣ\n");
 			for(int z = 0; z < (stack->alen); z++)
