@@ -49,7 +49,7 @@ int		search_from_top(t_stack *stack, int n, int tofind)
 					break; //더 빨리 뽑으려고.. 
 			}
 			printf("-----TOP AND BOTTOM IDX : %d AND %d\n" ,fromtop, frombottom);
-			if (fromtop < 0 || frombottom < 0)
+			if (fromtop < 0 || frombottom < 0) // -1일 때 
 			{
 				tempidx = frombottom < 0 ? fromtop : frombottom + 1;
 				till_tofind = frombottom < 0 ? rb : rrb;
@@ -63,10 +63,7 @@ int		search_from_top(t_stack *stack, int n, int tofind)
 			fromtop = 0;
 			frombottom = 0;
 			while (0 < tempidx--)
-			{
 				till_tofind(stack);
-				// printf("TEMPIDX IS : %d\n", tempidx);
-			}
 			printf("지금 B_TOP은 %d\n", B_TOP);
 			if (B_TOP == stack->sorted_arr[tofind])
 			{

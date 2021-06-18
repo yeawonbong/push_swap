@@ -35,20 +35,20 @@ int main(int argc, char *argv[])
 	if(((stack = get_arg(argc, argv, stack))) == ERROR)
 		error_exit(stack);
 
-		if(1){	// INPUT 출력
-			printf("^^^^^^^^^^Firt_Input^^^^^^^ㅣ\n");
-			for(int z = 0; z < (stack->alen); z++)
-				printf("stack a의 %d번째 숫자: %d\n", z, (stack->a)[z]);
-			printf("vvvvvvvvvvFirt_Inputvvvvvvvv\n\n");
-		}
+		// if(1){	// INPUT 출력
+		// 	printf("^^^^^^^^^^Firt_Input^^^^^^^ㅣ\n");
+		// 	for(int z = 0; z < (stack->alen); z++)
+		// 		printf("stack a의 %d번째 숫자: %d\n", z, (stack->a)[z]);
+		// 	printf("vvvvvvvvvvFirt_Inputvvvvvvvv\n\n");
+		// }
 
-		if(1){  // SORTING TEST
-			sort_arg(stack, stack->alen);
-			set_pivot(stack);
-			group1_to_stackb(stack);
-			group2_to_stackb(stack);
-			printf("*********FIN_SORT_IN_STACK B**********\n");
-		}
+	sort_arg(stack, stack->alen);
+	set_pivot(stack);
+	move_to_stackb(stack);
+	// group1_to_stackb(stack);
+	// group2_to_stackb(stack);
+	
+		printf("*********FIN_SORT_IN_STACK B**********\n");
 
 
 

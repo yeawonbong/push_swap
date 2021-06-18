@@ -37,11 +37,11 @@ void	tobottom_if(char tobottom, t_stack *stack, char stacknum)
 	rotate(stack);
 }
 
-int   push_swap(t_stack *stack)
-{
-	group1_to_stackb(stack);
-	group2_to_stackb(stack);
+// int   push_swap(t_stack *stack)
+// {
+// 	group1_to_stackb(stack);
+// 	group2_to_stackb(stack);
 
 
-	return 0;
-}
+// 	return 0;
+// }

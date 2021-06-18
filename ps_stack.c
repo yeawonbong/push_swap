@@ -40,6 +40,7 @@ int		*add_back(int *arr, int len, int new)
 	{
 		temp = malloc(sizeof(int));
 		*temp = new;
+		// free(arr); 해야하나 말아야하나... LEAK이 어딘가.... 
 	}
 	else
 	{

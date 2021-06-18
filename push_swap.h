@@ -56,8 +56,8 @@ void	tobottom_if(char tobottom, t_stack *stack, char stacknum);
 */
 void	set_pivot(t_stack *stack);
 void	post_pb(t_stack *stack, int n);
-void	group1_to_stackb(t_stack *stack);
-void	group2_to_stackb(t_stack *stack);
+void	move_to_stackb(t_stack *stack);
+
 
 
 /*
