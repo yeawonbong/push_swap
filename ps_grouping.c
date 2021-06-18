@@ -25,6 +25,35 @@ void	pb_if(char topb, t_stack *stack, int n)
 		rb(stack);
 }
 
+// void	temptest(t_stack *stack)
+// {
+// 	int		fromtop;
+// 	int		frombottom;
+// 	int 	tempidx;
+// 	void 	(*ft)(t_stack *stack);
+
+// 	while (stack->blen < HALF)
+// 	{
+// 		fromtop = 0;
+// 		frombottom = 0;
+// 		while (!(stack->a[frombottom] < HALF))
+// 			fromtop++;
+// 		while (!(stack->a[stack->alen - 1 - frombottom] < HALF))
+// 			frombottom++;
+
+// 		frombottom++;
+// 		tempidx = fromtop < frombottom ? fromtop : frombottom;
+// 		ft = fromtop < frombottom ? rb : rrb;
+// 		while (0 < tempidx--)
+// 			ft(stack);
+// 		pb_if(NONE, stack, 1);
+// 		printf("pb한 숫자는 : %d\n", B_TOP);
+		
+// 	}
+// }
+
+
+
 void	group1_to_stackb(t_stack *stack) //group1을 stack_b로 보냄
 {
 	int n;
@@ -37,6 +66,29 @@ void	group1_to_stackb(t_stack *stack) //group1을 stack_b로 보냄
 		else
 			tobottom_if(NONE, stack, 'a');
 	}
+	// int		fromtop;
+	// int		frombottom;
+	// int 	tempidx;
+	// void 	(*ft)(t_stack *stack);
+
+	// while (stack->blen < HALF)
+	// {
+	// 	fromtop = 0;
+	// 	frombottom = 0;
+	// 	while (!(stack->a[fromtop] < HALF))
+	// 		fromtop++;
+	// 	while (!(stack->a[stack->alen - 1 - frombottom] < HALF))
+	// 		frombottom++;
+
+	// 	frombottom++;
+	// 	tempidx = fromtop < frombottom ? fromtop : frombottom;
+	// 	ft = fromtop < frombottom ? ra : rra;
+	// 	while (0 < tempidx--)
+	// 		ft(stack);
+	// 	pb_if(NONE, stack, 1);
+	// 	printf("pb한 숫자는 : %d\n", B_TOP);
+		
+	// }
 }
 
 void	group2_to_stackb(t_stack *stack)
