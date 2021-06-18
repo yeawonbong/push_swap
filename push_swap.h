@@ -16,8 +16,9 @@
 
 # define SORTED_TOP stack->sorted_arr[0]
 # define SORTED_BOTTOM stack->sorted_arr[stack->sortedlen - 1]
-# define HALF stack->sortedlen / 2
-# define GROUPS 4
+# define HALF PERGROUP * 2
+# define GROUPS 5
+# define PERGROUP stack->sortedlen / GROUPS
 
 
 
@@ -35,7 +36,7 @@ typedef struct			s_stack
 	int	blen;
 	int	*sorted_arr;
 	int sortedlen;
-	int	pivot[4];
+	int	pivot[6];
 	int count;
 }						t_stack;
 
@@ -57,9 +58,6 @@ int		*del_front(int *arr, int len);
 void    totop_if(char toswap, t_stack *stack, char stacknum);
 void	tobottom_if(char tobottom, t_stack *stack, char stacknum);
 
-/*
-**	push_swap.c
-*/
 
 /*
 ** ps_sorting.c
