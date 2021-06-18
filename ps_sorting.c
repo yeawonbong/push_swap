@@ -118,7 +118,7 @@ int		sort_stacks(t_stack *stack, int n, int tofind)
 			printf("{{{{{{{{{{{{{{{{{{{{{여기WHILE_____IN}}}}}}}}}}}}}}\n");
 			fromtop = B_TOP < stack->pivot[n] ? -1 : 0;
 			frombottom = B_BOTTOM < stack->pivot[n] ? -1 : 0;
-			while (0 <= fromtop && stack->pivot[n] <= stack->b[fromtop] && fromtop < stack->alen) // TOP 탐색 tofind인덱스 찾기
+			while (0 <= fromtop && stack->pivot[n] <= stack->b[fromtop] && fromtop < stack->blen) // TOP 탐색 tofind인덱스 찾기
 			{printf("{{{{{{{{{{{{{{{{{{{{{TOP_____IN}}}}}}}}}}}}}}\n");
 				if (stack->b[fromtop] == stack->sorted_arr[tofind])
 				{printf("TOP찾았다찾았다\n");
