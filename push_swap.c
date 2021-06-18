@@ -55,8 +55,8 @@ void   push_swap(t_stack *stack)
 	move_to_stackb(stack);
 
 		printf("*********FIN_SORT_IN_STACK B**********\n");
-
-	sort_stacks(stack, GROUPS - 1, SORTED_BOTTOM - 2);
+	printf("TOFIND NOW IS : %d\n", stack->sortedlen - 3);
+	sort_stacks(stack, GROUPS - 1, stack->sortedlen - 3);
 
 }
 
@@ -99,5 +99,5 @@ int main(int argc, char *argv[])
 	free_all(stack);
 	system("leaks a.out > leaks_result_temp; cat leaks_result_temp | grep leaked && rm -rf leaks_result_temp");
 	// system("leaks a.out");
-	return 0;
+	return (0);
 }

@@ -70,15 +70,8 @@ void	pb_if(char topb, t_stack *stack, int n);
 void	move_to_stackb(t_stack *stack);
 int		sort_stacks(t_stack *stack, int n, int tofind);
 
-
-
 /*
-** ps_sort_in_row.c
-*/
-
-/*
-** push_swap_functions
-** (push, swap, rotate)
+** push_swap_functions (push, swap, rotate)
 */
 void	pa(t_stack *stack);
 void	pb(t_stack *stack);
