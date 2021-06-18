@@ -64,3 +64,26 @@ int		*del_front(int *arr, int len)
 	free(arr);
 	return (temp);
 }
+
+void    totop_if(char toswap, t_stack *stack, char stacknum)
+{
+	int		**st;
+	void 	(*swap)(t_stack *stack);
+
+	st = stacknum == 'a' ? &stack->a : &stack->b;
+	swap = stacknum == 'a' ? sa : sb;
+
+	if (BIGGER == toswap && (*st)[0] < (*st)[1])
+		swap(stack);
+	if (SMALLER == toswap && (*st)[0] > (*st)[1])
+		swap(stack);
+}
+
+void	tobottom_if(char tobottom, t_stack *stack, char stacknum)
+{//(더 ~한 수를 swap하고) bottom으로 보내는 축약함수. 
+	void 	(*rotate)(t_stack *stack);
+
+	rotate = stacknum == 'a' ? ra : rb;
+	totop_if(tobottom, stack, stacknum);
+	rotate(stack);
+}
