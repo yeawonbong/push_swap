@@ -40,12 +40,17 @@ typedef struct			s_stack
 }						t_stack;
 
 /*
+** ps_get_arg.c
+*/
+void	get_arg(int argc, char *argv[], t_stack *stack);
+void	sort_arg(t_stack *stack, int size);
+void    duplicates(t_stack *stack);
+
+/*
 **	push_swap.c
 */
 void	free_all(t_stack *stack);
 void	error_exit(t_stack *stack);
-void	get_arg(int argc, char *argv[], t_stack *stack);
-void	sort_arg(t_stack *stack, int size);
 void	push_swap(t_stack *stack);
 int		main(int argc, char *argv[]);
 

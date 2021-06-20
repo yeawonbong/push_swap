@@ -59,6 +59,8 @@ void	sort_small_args(t_stack *stack)
 				rb(stack);
 		}
 	}
+	free_all(stack);
+	exit(EXIT_SUCCESS);
 }
 
 void	set_pivot(t_stack *stack)

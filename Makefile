@@ -1,4 +1,5 @@
 SRCS = push_swap.c\
+ps_get_arg.c\
 ps_stack.c\
 ps_sorting.c\
 psf_push.c\

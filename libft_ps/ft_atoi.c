@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 16:33:44 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/09 17:47:03 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/20 23:10:53 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,7 @@ int	ft_atoi(char *str)
 		if (-2147483648 > (minus * res))
 			return (0);
 	}
+	if (str[i])
+		return (0);
 	return ((int)(minus * res));
 }
