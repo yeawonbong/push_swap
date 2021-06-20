@@ -15,7 +15,7 @@ void    error_exit(t_stack *stack)
 	exit(EXIT_FAILURE);
 }
 
-t_stack		*get_arg(int argc, char *argv[], t_stack *stack)
+void		get_arg(int argc, char *argv[], t_stack *stack)
 {
 	int		i = 1;
 	int 	j = 0;
@@ -24,7 +24,7 @@ t_stack		*get_arg(int argc, char *argv[], t_stack *stack)
 	char	*itoaed;
 
 	if (argc < 2)
-		return ERROR;
+		error_exit(stack);
 	while(i < argc)
 	{
 		temp = ft_split(argv[i++], ' '); //"1 23 4 이럴 경우를 염두, split"
@@ -34,7 +34,7 @@ t_stack		*get_arg(int argc, char *argv[], t_stack *stack)
 			if (ft_strlen(itoaed = ft_itoa(atoied)) != ft_strlen(temp[j]))
 			{
 				free(itoaed);
-				return ERROR;
+				error_exit(stack);
 			}
 			free(itoaed);
 			stack->a = add_back(stack->a, stack->alen, atoied);
@@ -45,18 +45,45 @@ t_stack		*get_arg(int argc, char *argv[], t_stack *stack)
 		j = 0;
 		free(temp);
 	}
-	return(stack);
+}
+void	sort_arg(t_stack *stack, int size)
+{
+	int *arr;
+	int	temp;
+	int	i;
+
+	i = 0;
+	if (!(arr = malloc(sizeof(int) * size)) || \
+	!ft_memcpy(arr, stack->a, sizeof(int) * size))
+		error_exit(stack);
+	while (i < size - 1)
+	{
+		if (arr[i] > arr[i + 1])
+		{
+			temp = arr[i];
+			arr[i] = arr[i + 1];
+			arr[i + 1] = temp;
+		}
+		if (i == 0 || arr[i - 1] <= arr[i])
+			i++;
+		else
+			i--;
+	}
+	stack->sorted_arr = arr;
+	stack->sortedlen = stack->alen;
 }
 
 void   push_swap(t_stack *stack)
 {
 	sort_arg(stack, stack->alen);
 	set_pivot(stack);
+	if (stack->sortedlen < 10)
+		sort_small_args(stack);
 	move_to_stackb(stack);
 
-		printf("*********FIN_SORT_IN_STACK B**********\n");
-	printf("TOFIND NOW IS : %d\n", SORTED_BOTTOM);
-	sort_stacks(stack, SORTED_BOTTOM);
+	// 	printf("*********FIN_SORT_IN_STACK B**********\n");
+	// printf("TOFIND NOW IS : %d\n", SORTED_BOTTOM);
+	sort_stacks(stack, SORTED_BOTTOM, GROUPS - 1);
 
 }
 
@@ -65,23 +92,9 @@ int main(int argc, char *argv[])
 	static	t_stack	*stack;
 
 	stack = malloc(sizeof(t_stack));
-	if(((stack = get_arg(argc, argv, stack))) == ERROR)
-		error_exit(stack);
+	get_arg(argc, argv, stack);
 
-		// if(1){	// INPUT 출력
-		// 	printf("^^^^^^^^^^Firt_Input^^^^^^^ㅣ\n");
-		// 	for(int z = 0; z < (stack->alen); z++)
-		// 		printf("stack a의 %d번째 숫자: %d\n", z, (stack->a)[z]);
-		// 	printf("vvvvvvvvvvFirt_Inputvvvvvvvv\n\n");
-		// }
 
-	// sort_arg(stack, stack->alen);
-	// set_pivot(stack);
-	// move_to_stackb(stack);
-	
-	// 	printf("*********FIN_SORT_IN_STACK B**********\n");
-
-	// sort_stacks(stack, GROUPS - 1, SORTED_BOTTOM - 2);
 	push_swap(stack);
 
 			printf("^^^^^^^^^^stack a^^^^^^^ㅣ\n");
@@ -95,7 +108,8 @@ int main(int argc, char *argv[])
 			printf("vvvvvvvvvvstack bvvvvvvvv\n\n");
 
 			printf("0000000000000000000000000\n0000[ COUNT IS : %d ]0000\n0000000000000000000000000\n", stack->count);
-		
+		printf("PIVOT 3은 뭐길래..... %d\n", stack->pivot[3]);
+		printf("PIVOT 4가 뭐길래..... %d\n", stack->pivot[4]);
 	free_all(stack);
 	system("leaks a.out > leaks_result_temp; cat leaks_result_temp | grep leaked && rm -rf leaks_result_temp");
 	// system("leaks a.out");

@@ -44,7 +44,8 @@ typedef struct			s_stack
 */
 void	free_all(t_stack *stack);
 void	error_exit(t_stack *stack);
-t_stack	*get_arg(int argc, char *argv[], t_stack *stack);
+void	get_arg(int argc, char *argv[], t_stack *stack);
+void	sort_arg(t_stack *stack, int size);
 void	push_swap(t_stack *stack);
 int		main(int argc, char *argv[]);
 
@@ -61,11 +62,14 @@ void	tobottom_if(char tobottom, t_stack *stack, char stacknum);
 /*
 ** ps_sorting.c
 */
-void	sort_arg(t_stack *stack, int size);
 void	set_pivot(t_stack *stack);
-void	pb_if(char topb, t_stack *stack, int n);
+void	div_in_half(char topb, t_stack *stack, int n);
 void	move_to_stackb(t_stack *stack);
-int		sort_stacks(t_stack *stack, int tofind);
+void	sort_stacks(t_stack *stack, int tofind, int n);
+
+void	sort_five(t_stack *stack, int n);
+void	sort_three(t_stack *stack);
+void	sort_small_args(t_stack *stack);
 
 /*
 ** push_swap_functions (push, swap, rotate)

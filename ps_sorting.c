@@ -1,30 +1,64 @@
 #include "push_swap.h"
 
-void	sort_arg(t_stack *stack, int size)
+void	sort_three(t_stack *stack)
 {
-	int *arr;
-	int	temp;
-	int	i;
+	if (A_TOP == SORTED_BOTTOM)
+		ra(stack);
+	else if (stack->a[1] == SORTED_BOTTOM)
+		rra(stack);
+	totop_if(SMALLER, stack, 'a');	
+}
 
-	i = 0;
-	if (!(arr = malloc(sizeof(int) * size)))
-		error_exit(stack);
-	ft_memcpy(arr, stack->a, sizeof(int) * size);
-	while (i < size - 1)
-	{
-		if (arr[i] > arr[i + 1])
+void	sort_five(t_stack *stack, int n)
+{
+	while (3 < stack->alen)
+	{printf("loop?\n");
+		if (A_TOP == stack->sorted_arr[n] || stack->a[1] == stack->sorted_arr[n]\
+		|| A_TOP == stack->sorted_arr[n + 1] || stack->a[1] == stack->sorted_arr[n + 1])
 		{
-			temp = arr[i];
-			arr[i] = arr[i + 1];
-			arr[i + 1] = temp;
+			totop_if(SMALLER, stack, 'a');
+			pb(stack);
 		}
-		if (i == 0 || arr[i - 1] <= arr[i])
-			i++;
 		else
-			i--;
+			ra(stack);					
 	}
-	stack->sorted_arr = arr;
-	stack->sortedlen = stack->alen;
+	totop_if(BIGGER, stack, 'b');
+	sort_three(stack);
+	pa(stack);
+	pa(stack);
+}
+
+void	sort_small_args(t_stack *stack)
+{
+	int pivot;
+
+	if (stack->sortedlen < 3)
+		error_exit(stack);
+	if (stack->sortedlen == 3)
+		sort_three(stack);
+	else
+	{
+		pivot = stack->sortedlen - GROUPS;
+		while (GROUPS < stack->alen)
+		{
+			if (A_TOP < stack->sorted_arr[pivot])
+				pb(stack);
+			else
+				ra(stack);
+		}
+		sort_five(stack, pivot);
+		pivot--;
+		while (stack->blen)
+		{
+			if (B_TOP == stack->sorted_arr[pivot])
+			{
+				pa(stack);
+				pivot--;
+			}
+			else
+				rb(stack);
+		}
+	}
 }
 
 void	set_pivot(t_stack *stack)
@@ -41,18 +75,20 @@ void	set_pivot(t_stack *stack)
 	printf("{{{{{{{{{PRINT PIVOT: %d, %d, %d, %d\n", stack->pivot[0],stack->pivot[1],stack->pivot[2],stack->pivot[3]);
 }
 
-void	pb_if(char topb, t_stack *stack, int n)
+void	div_in_half(char topb, t_stack *stack, int n)
 {
 	if (topb != NONE)
 		totop_if(topb, stack, 'a');
 	//-----pb 후처리----pivot보다 작으면 밑으로 보내
 	pb(stack);
 	printf("----pivot now is : %d\n", stack->pivot[n]);
-	if (1 < stack->blen && B_TOP < stack->pivot[n])
-		rb(stack);
+	if (1 < stack->blen && B_TOP < stack->pivot[n])////이게 뭔... 
+	{	rb(stack);
+	printf("\n\n\n\n");
+	}
 }
 
-void	move_to_stackb(t_stack *stack) //group1을 stack_b로 보냄
+void	move_to_stackb(t_stack *stack) //stack_b로 보냄
 {
 	int n;
 
@@ -61,26 +97,25 @@ void	move_to_stackb(t_stack *stack) //group1을 stack_b로 보냄
 	{
 		while (!(n % 2) && stack->blen < PERGROUP * n)
 		{
-			if (A_TOP <= stack->pivot[n])
-				pb_if(NONE, stack, n - 1);
+			if (A_TOP < stack->pivot[n])
+				div_in_half(NONE, stack, n - 1);
 			else
 				ra(stack);
 		}
 		n++;
 	}
 	while (0 < stack->alen)
-			pb_if(NONE, stack, PERGROUP / 2);
+			div_in_half(NONE, stack, 450);////450 어떻게 끌어올 것인가 생각 
 }
 
-int		sort_stacks(t_stack *stack, int tofind)
+void		sort_stacks(t_stack *stack, int tofind, int n)
 {
 	int 	tempidx;
 	int		fromtop;
 	int		frombottom;
 	void 	(*till_tofind)(t_stack *stack);
-	int		n;
-	
-	n = GROUPS - 1;
+
+
 	while (0 <= n)
 	{
 		while (stack->pivot[n] <= B_TOP || stack->pivot[n] <= B_BOTTOM) // 해당 그룹이 stack->b에 남아있을 때까지
@@ -88,7 +123,7 @@ int		sort_stacks(t_stack *stack, int tofind)
 			printf("{{{{{{{{{{{{{{{{{{{{{여기WHILE_____IN}}}}}}}}}}}}}}\n");
 			fromtop = B_TOP < stack->pivot[n] ? -1 : 0;
 			frombottom = B_BOTTOM < stack->pivot[n] ? -1 : 0;
-			while (0 <= fromtop && stack->pivot[n] <= stack->b[fromtop] && fromtop < stack->blen) // TOP 탐색 tofind인덱스 찾기
+			while (0 <= fromtop && stack->pivot[n] <= stack->b[fromtop]) // TOP 탐색 tofind인덱스 찾기
 			{printf("{{{{{{{{{{{{{{{{{{{{{TOP_____IN}}}}}}}}}}}}}}\n");
 				if (stack->b[fromtop] == stack->sorted_arr[tofind])
 				{printf("TOP찾았다찾았다\n");
@@ -98,7 +133,7 @@ int		sort_stacks(t_stack *stack, int tofind)
 					fromtop++; printf("fromtop ++ ing in TOP :: %d\n", fromtop);
 				}
 			}
-			while (0 <= frombottom && stack->pivot[n] <= stack->b[stack->blen - 1 - frombottom] && fromtop < stack->blen) // B_BOTTOM 탐색
+			while (0 <= frombottom && stack->pivot[n] <= stack->b[stack->blen - 1 - frombottom]) // B_BOTTOM 탐색
 			{printf("{{{{{{{{{{{{{{{{{{{{{BOTTOM_____IN}}}}}}}}}}}}}}\n");
 				if (stack->b[stack->blen - 1 - frombottom] == stack->sorted_arr[tofind]) //B_BOTTOM부터 탐색
 				{printf("BOTTOM찾았다찾았다\n");
@@ -139,5 +174,4 @@ int		sort_stacks(t_stack *stack, int tofind)
 		n--;
 	}
 	pa(stack);
-	return (tofind);
 }
