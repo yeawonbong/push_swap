@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 23:16:38 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/21 03:06:22 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/21 04:33:33 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,6 @@ void	get_arg(int argc, char *argv[], t_stack *stack)
 	}
 	sort_arg(stack, stack->alen);
 	duplicates(stack);
+	for (int g = 0; g < stack->sortedlen; g++)
+		printf("%3d번째 SORTED_ARR: %3d\n", g, stack->sorted_arr[g]);
 }
