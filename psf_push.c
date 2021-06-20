@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   psf_push.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybong <ybong@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 20:40:01 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/16 21:33:28 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/21 03:27:26 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	pa(t_stack *stack)
 	stack->a = add_front(stack->a, stack->alen, temp);
 	stack->blen--;
 	stack->alen++;
-	write(1, "pa\n", 3); 
+	write(1, "pa\n", 3);
 	stack->count++;
 }
 

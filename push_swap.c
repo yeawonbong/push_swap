@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 23:43:55 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/21 02:53:44 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/21 03:22:19 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ void    error_exit(t_stack *stack)
 void   push_swap(t_stack *stack)
 {
 	set_pivot(stack);
-	if (stack->sortedlen < 10)
+	if (stack->sortedlen <= 3)
+		sort_three(stack);	
+	else if (stack->sortedlen < 10)
 		sort_small_args(stack);
 	else
 	{

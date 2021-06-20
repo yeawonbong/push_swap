@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ps_sorting.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/21 03:06:48 by ybong             #+#    #+#             */
+/*   Updated: 2021/06/21 03:07:58 by ybong            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	sort_three(t_stack *stack)
@@ -12,7 +24,7 @@ void	sort_three(t_stack *stack)
 void	sort_five(t_stack *stack, int n)
 {
 	while (3 < stack->alen)
-	{printf("loop?\n");
+	{
 		if (A_TOP == stack->sorted_arr[n] || stack->a[1] == stack->sorted_arr[n]\
 		|| A_TOP == stack->sorted_arr[n + 1] || stack->a[1] == stack->sorted_arr[n + 1])
 		{
@@ -72,7 +84,6 @@ void	set_pivot(t_stack *stack)
 		stack->pivot[n] = stack->sorted_arr[(PERGROUP) * n];
 		n++;
 	}
-	printf("{{{{{{{{{PRINT PIVOT: %d, %d, %d, %d\n", stack->pivot[0],stack->pivot[1],stack->pivot[2],stack->pivot[3]);
 }
 
 void	div_in_half(char topb, t_stack *stack, int halfpivot)
@@ -80,7 +91,6 @@ void	div_in_half(char topb, t_stack *stack, int halfpivot)
 	if (topb != NONE)
 		totop_if(topb, stack, 'a');
 	pb(stack);
-	printf("----pivot now is : %d\n", halfpivot);
 	if (1 < stack->blen && B_TOP < halfpivot)
 		rb(stack);
 }
@@ -140,32 +150,29 @@ void		sort_stacks(t_stack *stack, int tofind, int n)
 
 	while (1 < stack->blen)
 	{
-		while (tofind &&(stack->pivot[n] <= B_TOP || stack->pivot[n] <= B_BOTTOM)) // 해당 그룹이 stack->b에 남아있을 때까지
+		while (tofind &&(stack->pivot[n] <= B_TOP || stack->pivot[n] <= B_BOTTOM))
 		{
 			fromtop = B_TOP < stack->pivot[n] ? -1 : 0;
 			frombottom = B_BOTTOM < stack->pivot[n] ? -1 : 0;
 			printf("자 TOFIND 시작한다 %d--%d\n", tofind, stack->sorted_arr[tofind]);
-			while (0 <= fromtop && stack->pivot[n] <= stack->b[fromtop]) // TOP 탐색 tofind인덱스 찾기
+			while (0 <= fromtop && stack->pivot[n] <= stack->b[fromtop])
 			{
 				if (stack->b[fromtop] == stack->sorted_arr[tofind])
 					break ;
 				else
 					fromtop++;
 			}
-			while (0 <= frombottom && stack->pivot[n] <= stack->b[stack->blen - 1 - frombottom]) // B_BOTTOM 탐색
+			while (0 <= frombottom && stack->pivot[n] <= stack->b[stack->blen - 1 - frombottom])
 			{
-				if (stack->b[stack->blen - 1 - frombottom] == stack->sorted_arr[tofind]) //B_BOTTOM부터 탐색
+				if (stack->b[stack->blen - 1 - frombottom] == stack->sorted_arr[tofind])
 					break ;
 				else
 					frombottom++;
 				if (0 <= fromtop && fromtop < frombottom)
 					break ;
 			}
-			printf("중간점검 TOP %d\n중간점검 BOTTOM %d\n", fromtop, frombottom);
-			// return ;
-
-			if (fromtop < 0 || frombottom < 0) // -1일 때 
-			{printf("에러처리 IN\n");
+			if (fromtop < 0 || frombottom < 0)
+			{
 				tempidx = frombottom < 0 ? fromtop : frombottom + 1;
 				till_tofind = frombottom < 0 ? rb : rrb;
 			}

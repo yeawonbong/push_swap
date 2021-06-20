@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 23:16:38 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/21 02:39:42 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/21 03:06:22 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ void	sort_arg(t_stack *stack, int size)
 	}
 	stack->sorted_arr = arr;
 	stack->sortedlen = stack->alen;
-	// for (int x = 0; x < stack->sortedlen; x++)
-	// 	printf("SORTED ARR 뽑아보자 %3d번째 : %5d\n", x, stack->sorted_arr[x]);
 }
 
 void	get_arg(int argc, char *argv[], t_stack *stack)
@@ -74,23 +72,21 @@ void	get_arg(int argc, char *argv[], t_stack *stack)
 	int		atoied;
 
 	i = 1;
-	j = 0;
 	temp = 0;
 	if (argc < 2)
 		error_exit(stack);
 	while (i < argc)
 	{
+		j = 0;
 		temp = ft_split(argv[i++], ' ');
 		while (temp[j])
 		{
-			atoied = ft_atoi(temp[j]);
-			atoi_error(stack, atoied, temp[j]);
+			atoi_error(stack, atoied = ft_atoi(temp[j]), temp[j]);
 			stack->a = add_back(stack->a, stack->alen, atoied);
 			(stack->alen)++;
 			free(temp[j]);
 			j++;
 		}
-		j = 0;
 		free(temp);
 	}
 	sort_arg(stack, stack->alen);

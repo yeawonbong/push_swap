@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/09 21:31:55 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/09 21:31:55 by ybong            ###   ########.fr       */
+/*   Created: 2021/06/21 03:25:12 by ybong             #+#    #+#             */
+/*   Updated: 2021/06/21 03:26:55 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int		*add_back(int *arr, int len, int new)
 	{
 		temp = malloc(sizeof(int));
 		*temp = new;
-		// free(arr); 해야하나 말아야하나... LEAK이 어딘가.... 
 	}
 	else
 	{
@@ -65,14 +64,13 @@ int		*del_front(int *arr, int len)
 	return (temp);
 }
 
-void    totop_if(char toswap, t_stack *stack, char stacknum)
+void	totop_if(char toswap, t_stack *stack, char stacknum)
 {
 	int		**st;
-	void 	(*swap)(t_stack *stack);
+	void	(*swap)(t_stack *stack);
 
 	st = stacknum == 'a' ? &stack->a : &stack->b;
 	swap = stacknum == 'a' ? sa : sb;
-
 	if (BIGGER == toswap && (*st)[0] < (*st)[1])
 		swap(stack);
 	if (SMALLER == toswap && (*st)[0] > (*st)[1])
@@ -80,8 +78,8 @@ void    totop_if(char toswap, t_stack *stack, char stacknum)
 }
 
 void	tobottom_if(char tobottom, t_stack *stack, char stacknum)
-{//(더 ~한 수를 swap하고) bottom으로 보내는 축약함수. 
-	void 	(*rotate)(t_stack *stack);
+{
+	void	(*rotate)(t_stack *stack);
 
 	rotate = stacknum == 'a' ? ra : rb;
 	totop_if(tobottom, stack, stacknum);

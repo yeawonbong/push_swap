@@ -2,6 +2,7 @@ SRCS = push_swap.c\
 ps_get_arg.c\
 ps_stack.c\
 ps_sorting.c\
+ps_sorting_small.c\
 psf_push.c\
 psf_swap.c\
 psf_rotate.c\
