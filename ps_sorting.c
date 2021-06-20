@@ -35,7 +35,7 @@ void	set_pivot(t_stack *stack)
 	n = 1;
 	while (n < GROUPS)
 	{
-		stack->pivot[n] = stack->sorted_arr[(stack->sortedlen / GROUPS) * n];
+		stack->pivot[n] = stack->sorted_arr[(PERGROUP) * n];
 		n++;
 	}
 	printf("{{{{{{{{{PRINT PIVOT: %d, %d, %d, %d\n", stack->pivot[0],stack->pivot[1],stack->pivot[2],stack->pivot[3]);
@@ -56,21 +56,17 @@ void	move_to_stackb(t_stack *stack) //group1을 stack_b로 보냄
 {
 	int n;
 
-	n = 1; // 25
-	while (stack->blen < HALF)
+	n = 2; // 25
+	while (n < GROUPS)
 	{
-		if (A_TOP < HALF)
-			pb_if(NONE, stack, n);
-		else
-			tobottom_if(NONE, stack, 'a');
-	}
-	n = 3; // 75
-	while (PERGROUP < stack->alen)
-	{
-		if (stack->pivot[4] < A_TOP)
-			ra(stack);
-		else
-			pb_if(NONE, stack, n);
+		while (!(n % 2) && stack->blen < PERGROUP * n)
+		{
+			if (A_TOP <= stack->pivot[n])
+				pb_if(NONE, stack, n - 1);
+			else
+				ra(stack);
+		}
+		n++;
 	}
 	while (2 < stack->alen)
 	{
