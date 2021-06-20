@@ -59,7 +59,7 @@ void	push_swap(t_stack *stack);
 int		main(int argc, char *argv[]);
 
 /*
-** ps_stack.c
+** ps_stack_tools.c
 */
 int		*add_front(int *arr, int len, int new);
 int		*add_back(int *arr, int len, int new);
@@ -68,12 +68,11 @@ void    totop_if(char toswap, t_stack *stack, char stacknum);
 void	tobottom_if(char tobottom, t_stack *stack, char stacknum);
 
 /*
-**	ps_move_to_stacka.c
+** ps_sorting_prep.c
 */
-int		search_fromtop(int fromtop, t_stack *stack, int tofind, int n);
-int		search_frombottom(int frombottom, t_stack *stack, int tofind, int n);
-int		find_tofind(int tempidx, t_stack *stack, int tofind, void (*till_tofind)(t_stack *stack));
-void	set_tools(t_sorting *tool);
+void	set_pivot(t_stack *stack);
+void	div_in_half(char topb, t_stack *stack, int halfpivot);
+void	move_to_stackb(t_stack *stack);
 
 /*
 **	ps_sorting_small.c
@@ -83,11 +82,12 @@ void	sort_three(t_stack *stack);
 void	sort_small_args(t_stack *stack);
 
 /*
-** ps_sorting.c
+**	ps_sorting_stacks.c
 */
-void	set_pivot(t_stack *stack);
-void	div_in_half(char topb, t_stack *stack, int halfpivot);
-void	move_to_stackb(t_stack *stack);
+int		search_fromtop(int fromtop, t_stack *stack, int tofind, int n);
+int		search_frombottom(int frombottom, t_stack *stack, int tofind, int n);
+int		find_tofind(int tempidx, t_stack *stack, int tofind, void (*till_tofind)(t_stack *stack));
+void	set_tools(t_sorting *tool);
 void	sort_stacks(t_stack *stack, int tofind, int n);
 
 /*
