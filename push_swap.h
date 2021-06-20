@@ -35,7 +35,7 @@ typedef struct			s_stack
 	int	blen;
 	int	*sorted_arr;
 	int sortedlen;
-	int	pivot[6];
+	int	pivot[5];
 	int count;
 }						t_stack;
 
@@ -65,7 +65,7 @@ void	sort_arg(t_stack *stack, int size);
 void	set_pivot(t_stack *stack);
 void	pb_if(char topb, t_stack *stack, int n);
 void	move_to_stackb(t_stack *stack);
-int		sort_stacks(t_stack *stack, int n, int tofind);
+int		sort_stacks(t_stack *stack, int tofind);
 
 /*
 ** push_swap_functions (push, swap, rotate)

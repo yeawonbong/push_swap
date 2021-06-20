@@ -56,7 +56,7 @@ void	move_to_stackb(t_stack *stack) //group1을 stack_b로 보냄
 {
 	int n;
 
-	n = 2; // 25
+	n = 2; 
 	while (n < GROUPS)
 	{
 		while (!(n % 2) && stack->blen < PERGROUP * n)
@@ -68,23 +68,19 @@ void	move_to_stackb(t_stack *stack) //group1을 stack_b로 보냄
 		}
 		n++;
 	}
-	while (2 < stack->alen)
-	{
-		if (A_TOP == SORTED_BOTTOM || A_TOP == stack->sorted_arr[stack->sortedlen - 2])
-			ra(stack);
-		else
+	while (0 < stack->alen)
 			pb_if(NONE, stack, PERGROUP / 2);
-	}
-	totop_if(SMALLER, stack, 'a'); //sort 완료 후 마지막 두 수 세팅
 }
 
-int		sort_stacks(t_stack *stack, int n, int tofind)
+int		sort_stacks(t_stack *stack, int tofind)
 {
-	int tempidx;
+	int 	tempidx;
 	int		fromtop;
 	int		frombottom;
 	void 	(*till_tofind)(t_stack *stack);
-
+	int		n;
+	
+	n = GROUPS - 1;
 	while (0 <= n)
 	{
 		while (stack->pivot[n] <= B_TOP || stack->pivot[n] <= B_BOTTOM) // 해당 그룹이 stack->b에 남아있을 때까지

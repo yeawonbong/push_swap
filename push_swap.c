@@ -55,8 +55,8 @@ void   push_swap(t_stack *stack)
 	move_to_stackb(stack);
 
 		printf("*********FIN_SORT_IN_STACK B**********\n");
-	printf("TOFIND NOW IS : %d\n", stack->sortedlen - 3);
-	sort_stacks(stack, GROUPS - 1, stack->sortedlen - 3);
+	printf("TOFIND NOW IS : %d\n", SORTED_BOTTOM);
+	sort_stacks(stack, SORTED_BOTTOM);
 
 }
 
