@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 23:16:38 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/21 04:33:33 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/21 05:43:10 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,33 +37,6 @@ void	atoi_error(t_stack *stack, int atoied, char *temp)
 	free(itoaed);
 }
 
-void	sort_arg(t_stack *stack, int size)
-{
-	int	*arr;
-	int	temp;
-	int	i;
-
-	i = 0;
-	if (!(arr = malloc(sizeof(int) * size)) || \
-	!ft_memcpy(arr, stack->a, sizeof(int) * size))
-		error_exit(stack);
-	while (i < size - 1)
-	{
-		if (arr[i] > arr[i + 1])
-		{
-			temp = arr[i];
-			arr[i] = arr[i + 1];
-			arr[i + 1] = temp;
-		}
-		if (i == 0 || arr[i - 1] <= arr[i])
-			i++;
-		else
-			i--;
-	}
-	stack->sorted_arr = arr;
-	stack->sortedlen = stack->alen;
-}
-
 void	get_arg(int argc, char *argv[], t_stack *stack)
 {
 	int		i;
@@ -91,6 +64,31 @@ void	get_arg(int argc, char *argv[], t_stack *stack)
 	}
 	sort_arg(stack, stack->alen);
 	duplicates(stack);
-	for (int g = 0; g < stack->sortedlen; g++)
-		printf("%3d번째 SORTED_ARR: %3d\n", g, stack->sorted_arr[g]);
+}
+
+void	sort_arg(t_stack *stack, int size)
+{
+	int	*arr;
+	int	temp;
+	int	i;
+
+	i = 0;
+	if (!(arr = malloc(sizeof(int) * size)) || \
+	!ft_memcpy(arr, stack->a, sizeof(int) * size))
+		error_exit(stack);
+	while (i < size - 1)
+	{
+		if (arr[i] > arr[i + 1])
+		{
+			temp = arr[i];
+			arr[i] = arr[i + 1];
+			arr[i + 1] = temp;
+		}
+		if (i == 0 || arr[i - 1] <= arr[i])
+			i++;
+		else
+			i--;
+	}
+	stack->sorted_arr = arr;
+	stack->sortedlen = stack->alen;
 }

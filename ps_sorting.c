@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 03:06:48 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/21 04:53:15 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/21 05:39:09 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,83 +49,30 @@ void	move_to_stackb(t_stack *stack)
 				ra(stack);
 		}
 		n++;
-		
 	}
 	while (0 < stack->alen)
 		div_in_half(NONE, stack, \
 		stack->sorted_arr[stack->sortedlen - (PERGROUP / 2)]);
 }
 
-int		search_fromtop(int fromtop, t_stack *stack, int tofind, int n)
-{
-	if (B_TOP < stack->pivot[n])
-		return (-1);
-	while (stack->pivot[n] <= stack->b[fromtop])
-	{
-		if (stack->b[fromtop] == stack->sorted_arr[tofind])
-			break ;
-		else
-			fromtop++;
-	}
-	return (fromtop);
-}
-
-int		search_frombottom(int frombottom, t_stack *stack, int tofind, int n)
-{
-	if (B_BOTTOM < stack->pivot[n])
-		return (-1);
-	while (stack->pivot[n] <= stack->b[stack->blen - 1 - frombottom])
-	{
-		if (stack->b[stack->blen - 1 - frombottom] == stack->sorted_arr[tofind])
-			break ;
-		else
-			frombottom++;
-	}
-	return (frombottom);
-}
-
-int		find_tofind(int tempidx, t_stack *stack, int tofind, \
-void (*till_tofind)(t_stack *stack))
-{
-	while (0 < tempidx--)
-		till_tofind(stack);
-	if (B_TOP == stack->sorted_arr[tofind])
-	{
-		pa(stack);
-		tofind--;
-	}
-	return (tofind);
-}
-
 void	sort_stacks(t_stack *stack, int tofind, int n)
 {
-	int		fromtop;
-	int		frombottom;
-	int		tempidx;
-	void	(*till_tofind)(t_stack *stack);
+	t_sorting	*tool;
 
+	tool = malloc(sizeof(t_sorting));
 	while (1 < stack->blen)
 	{
 		while (tofind && (stack->pivot[n] <= B_TOP \
 		|| stack->pivot[n] <= B_BOTTOM))
 		{
-			frombottom = B_BOTTOM < stack->pivot[n] ? -1 : 0;
-			fromtop = search_fromtop(fromtop, stack, tofind, n);
-			frombottom = search_frombottom(frombottom, stack, tofind, n);
-			if (fromtop < 0 || frombottom < 0)
-			{
-				tempidx = frombottom < 0 ? fromtop : frombottom + 1;
-				till_tofind = frombottom < 0 ? rb : rrb;
-			}
-			else
-			{
-				frombottom++;
-				tempidx = fromtop <= frombottom ? fromtop : frombottom;
-				till_tofind = fromtop <= frombottom ? rb : rrb;
-			}
-			fromtop = 0;
-			frombottom = 0;
-			tofind = find_tofind(tempidx, stack, tofind, till_tofind);
+			tool->frombottom = B_BOTTOM < stack->pivot[n] ? -1 : 0;
+			tool->fromtop = \
+				search_fromtop(tool->fromtop, stack, tofind, n);
+			tool->frombottom = \
+				search_frombottom(tool->frombottom, stack, tofind, n);
+			set_tools(tool);
+			tofind = \
+				find_tofind(tool->tempidx, stack, tofind, tool->till_tofind);
 		}
 		n--;
 	}

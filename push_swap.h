@@ -22,7 +22,7 @@
 # define BIGGER 'b'
 # define NONE 'n'
 
-typedef struct			s_stack
+typedef struct		s_stack
 {
 	int	*a;
 	int	*b;
@@ -32,15 +32,23 @@ typedef struct			s_stack
 	int sortedlen;
 	int	pivot[5];
 	int count;
-}						t_stack;
+}					t_stack;
+
+typedef struct 		s_sorting
+{
+	int		fromtop;
+	int		frombottom;
+	int		tempidx;
+	void	(*till_tofind)(t_stack *stack);
+}					t_sorting;
 
 /*
 ** ps_get_arg.c
 */
+void    duplicates(t_stack *stack);
 void	atoi_error(t_stack *stack, int atoied, char *temp);
 void	get_arg(int argc, char *argv[], t_stack *stack);
 void	sort_arg(t_stack *stack, int size);
-void    duplicates(t_stack *stack);
 
 /*
 **	push_swap.c
@@ -53,12 +61,26 @@ int		main(int argc, char *argv[]);
 /*
 ** ps_stack.c
 */
-int		*add_back(int *arr, int len, int new);
 int		*add_front(int *arr, int len, int new);
+int		*add_back(int *arr, int len, int new);
 int		*del_front(int *arr, int len);
 void    totop_if(char toswap, t_stack *stack, char stacknum);
 void	tobottom_if(char tobottom, t_stack *stack, char stacknum);
 
+/*
+**	ps_move_to_stacka.c
+*/
+int		search_fromtop(int fromtop, t_stack *stack, int tofind, int n);
+int		search_frombottom(int frombottom, t_stack *stack, int tofind, int n);
+int		find_tofind(int tempidx, t_stack *stack, int tofind, void (*till_tofind)(t_stack *stack));
+void	set_tools(t_sorting *tool);
+
+/*
+**	ps_sorting_small.c
+*/
+void	sort_five(t_stack *stack, int n);
+void	sort_three(t_stack *stack);
+void	sort_small_args(t_stack *stack);
 
 /*
 ** ps_sorting.c
@@ -67,10 +89,6 @@ void	set_pivot(t_stack *stack);
 void	div_in_half(char topb, t_stack *stack, int halfpivot);
 void	move_to_stackb(t_stack *stack);
 void	sort_stacks(t_stack *stack, int tofind, int n);
-
-void	sort_five(t_stack *stack, int n);
-void	sort_three(t_stack *stack);
-void	sort_small_args(t_stack *stack);
 
 /*
 ** push_swap_functions (push, swap, rotate)

@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 23:43:55 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/21 04:53:45 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/21 05:41:03 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void	error_exit(t_stack *stack)
 void	push_swap(t_stack *stack)
 {
 	set_pivot(stack);
-			for(int y=0; y < GROUPS; y++)
-				printf("피봇이 이상한거니 ? ^^ ,,, %3d\n", stack->pivot[y]);
 	if (stack->sortedlen <= 3)
 		sort_three(stack);
 	else if (stack->sortedlen < 10)
@@ -50,16 +48,6 @@ int		main(int argc, char *argv[])
 	stack = malloc(sizeof(t_stack));
 	get_arg(argc, argv, stack);
 	push_swap(stack);
-				printf("^^^^^^^^^^stack a^^^^^^^ㅣ\n");
-			for(int z = 0; z < (stack->alen); z++)
-				printf("stack a의 %d번째 숫자: %d\n", z, (stack->a)[z]);
-			printf("vvvvvvvvvvstack avvvvvvvv\n\n");
-
-			printf("^^^^^^^^^^stack b^^^^^^^ㅣ\n");
-			for(int z = 0; z < (stack->blen); z++)
-				printf("stack b의 %d번째 숫자: %d\n", z, (stack->b)[z]);
-			printf("vvvvvvvvvvstack bvvvvvvvv\n\n");
-			printf("0000000000000000000000000\n0000[ COUNT IS : %d ]0000\n0000000000000000000000000\n", stack->count);
 	free_all(stack);
 	return (0);
 }
