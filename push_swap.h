@@ -64,7 +64,7 @@ void	tobottom_if(char tobottom, t_stack *stack, char stacknum);
 ** ps_sorting.c
 */
 void	set_pivot(t_stack *stack);
-void	div_in_half(char topb, t_stack *stack, int n);
+void	div_in_half(char topb, t_stack *stack, int halfpivot);
 void	move_to_stackb(t_stack *stack);
 void	sort_stacks(t_stack *stack, int tofind, int n);
 

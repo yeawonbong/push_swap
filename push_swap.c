@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 23:43:55 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/21 00:45:32 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/21 02:53:44 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void   push_swap(t_stack *stack)
 	else
 	{
 		move_to_stackb(stack);
-		sort_stacks(stack, SORTED_BOTTOM, GROUPS - 1);
+		sort_stacks(stack, stack->sortedlen - 1, GROUPS - 1);
 		printf("SORTED_BOTTOM(TOFIND) : %d\n", SORTED_BOTTOM);
 	}
 }
