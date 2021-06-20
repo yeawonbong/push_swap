@@ -18,14 +18,9 @@
 # define SORTED_BOTTOM stack->sorted_arr[stack->sortedlen - 1]
 # define GROUPS 5
 # define PERGROUP stack->sortedlen / GROUPS
-
-
-
 # define SMALLER 's'
 # define BIGGER 'b'
 # define NONE 'n'
-# define FROM_TOP 0
-# define FROM_BOTTOM 1
 
 typedef struct			s_stack
 {
@@ -42,6 +37,7 @@ typedef struct			s_stack
 /*
 ** ps_get_arg.c
 */
+void	atoi_error(t_stack *stack, int atoied, char *temp);
 void	get_arg(int argc, char *argv[], t_stack *stack);
 void	sort_arg(t_stack *stack, int size);
 void    duplicates(t_stack *stack);

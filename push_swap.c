@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/20 23:43:55 by ybong             #+#    #+#             */
+/*   Updated: 2021/06/21 00:45:32 by ybong            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void    free_all(t_stack *stack)
@@ -17,17 +29,15 @@ void    error_exit(t_stack *stack)
 
 void   push_swap(t_stack *stack)
 {
-	sort_arg(stack, stack->alen);
-	duplicates(stack);
 	set_pivot(stack);
 	if (stack->sortedlen < 10)
 		sort_small_args(stack);
-	move_to_stackb(stack);
-
-	// 	printf("*********FIN_SORT_IN_STACK B**********\n");
-	// printf("TOFIND NOW IS : %d\n", SORTED_BOTTOM);
-	sort_stacks(stack, SORTED_BOTTOM, GROUPS - 1);
-
+	else
+	{
+		move_to_stackb(stack);
+		sort_stacks(stack, SORTED_BOTTOM, GROUPS - 1);
+		printf("SORTED_BOTTOM(TOFIND) : %d\n", SORTED_BOTTOM);
+	}
 }
 
 int main(int argc, char *argv[])
@@ -36,8 +46,6 @@ int main(int argc, char *argv[])
 
 	stack = malloc(sizeof(t_stack));
 	get_arg(argc, argv, stack);
-
-
 	push_swap(stack);
 
 			printf("^^^^^^^^^^stack a^^^^^^^ㅣ\n");
@@ -49,10 +57,7 @@ int main(int argc, char *argv[])
 			for(int z = 0; z < (stack->blen); z++)
 				printf("stack b의 %d번째 숫자: %d\n", z, (stack->b)[z]);
 			printf("vvvvvvvvvvstack bvvvvvvvv\n\n");
-
 			printf("0000000000000000000000000\n0000[ COUNT IS : %d ]0000\n0000000000000000000000000\n", stack->count);
-		printf("PIVOT 3은 뭐길래..... %d\n", stack->pivot[3]);
-		printf("PIVOT 4가 뭐길래..... %d\n", stack->pivot[4]);
 	free_all(stack);
 	system("leaks a.out > leaks_result_temp; cat leaks_result_temp | grep leaked && rm -rf leaks_result_temp");
 	// system("leaks a.out");
