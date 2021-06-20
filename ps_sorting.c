@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 03:06:48 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/21 04:23:43 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/21 04:53:15 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	move_to_stackb(t_stack *stack)
 				ra(stack);
 		}
 		n++;
+		
 	}
 	while (0 < stack->alen)
 		div_in_half(NONE, stack, \
