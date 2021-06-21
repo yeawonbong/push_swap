@@ -1,12 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/21 21:23:21 by ybong             #+#    #+#             */
+/*   Updated: 2021/06/21 21:28:12 by ybong            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef __PUSH_SWAP_H__
 # define __PUSH_SWAP_H__
 
-#include <stdio.h>
-
-#include "./libft_ps/libft.h"
-#include <stdlib.h>
-#include <stdarg.h>
-#include <unistd.h>
+# include "./libft_ps/libft.h"
+# include <stdlib.h>
+# include <stdarg.h>
+# include <unistd.h>
 
 # define ERROR 	0
 # define A_TOP stack->a[0]
@@ -22,30 +32,30 @@
 # define BIGGER 'b'
 # define NONE 'n'
 
-typedef struct		s_stack
+typedef struct	s_stack
 {
-	int	*a;
-	int	*b;
-	int	alen;
-	int	blen;
-	int	*sorted_arr;
-	int sortedlen;
-	int	pivot[5];
-	int count;
-}					t_stack;
+	int		*a;
+	int		*b;
+	int		alen;
+	int		blen;
+	int		*sorted_arr;
+	int		sortedlen;
+	int		pivot[5];
+	int		count;
+}				t_stack;
 
-typedef struct 		s_sorting
+typedef struct	s_sorting
 {
 	int		fromtop;
 	int		frombottom;
 	int		tempidx;
 	void	(*till_tofind)(t_stack *stack);
-}					t_sorting;
+}				t_sorting;
 
 /*
 ** ps_get_arg.c
 */
-void    duplicates(t_stack *stack);
+void	duplicates(t_stack *stack);
 void	non_int(t_stack *stack, char **temp, int j);
 void	atoi_error(t_stack *stack, int atoied, char *temp);
 int		cmp_arr(t_stack *stack);
@@ -65,7 +75,7 @@ int		main(int argc, char *argv[]);
 int		*add_front(int *arr, int len, int new);
 int		*add_back(int *arr, int len, int new);
 int		*del_front(int *arr, int len);
-void    totop_if(char toswap, t_stack *stack, char stacknum);
+void	totop_if(char toswap, t_stack *stack, char stacknum);
 void	tobottom_if(char tobottom, t_stack *stack, char stacknum);
 
 /*
@@ -88,7 +98,8 @@ void	sort_small_args(t_stack *stack);
 */
 int		search_fromtop(int fromtop, t_stack *stack, int tofind, int n);
 int		search_frombottom(int frombottom, t_stack *stack, int tofind, int n);
-int		find_tofind(int tempidx, t_stack *stack, int tofind, void (*till_tofind)(t_stack *stack));
+int		find_tofind(int tempidx, t_stack *stack, int tofind, \
+		void (*till_tofind)(t_stack *stack));
 void	set_tools(t_sorting *tool);
 void	sort_stacks(t_stack *stack, int tofind, int n);
 
@@ -98,16 +109,15 @@ void	sort_stacks(t_stack *stack, int tofind, int n);
 void	pa(t_stack *stack);
 void	pb(t_stack *stack);
 
-void 	sa(t_stack *stack);
+void	sa(t_stack *stack);
 void	sb(t_stack *stack);
 void	ss(t_stack *stack);
 
-void    ra(t_stack *stack);
-void    rb(t_stack *stack);
+void	ra(t_stack *stack);
+void	rb(t_stack *stack);
 void	rr(t_stack *stack);
-void    rra(t_stack *stack);
+void	rra(t_stack *stack);
 void	rrb(t_stack *stack);
 void	rrr(t_stack *stack);
 
-
-# endif
+#endif
