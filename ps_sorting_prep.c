@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 03:06:48 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/21 19:35:06 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/21 21:43:38 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ void	set_pivot(t_stack *stack)
 {
 	int n;
 
-	stack->pivot[0] = SORTED_TOP;
+	stack->pivot[0] = stack->sorted_arr[0];
 	n = 1;
 	while (n < GROUPS)
 	{
-		stack->pivot[n] = stack->sorted_arr[(PERGROUP) * n];
+		stack->pivot[n] = stack->sorted_arr[(stack->sortedlen / GROUPS) * n];
 		n++;
 	}
 }
@@ -57,7 +57,7 @@ void	div_in_half(char topb, t_stack *stack, int halfpivot)
 	if (topb != NONE)
 		totop_if(topb, stack, 'a');
 	pb(stack);
-	if (1 < stack->blen && B_TOP < halfpivot)
+	if (1 < stack->blen && stack->b[0] < halfpivot)
 		rb(stack);
 }
 
@@ -68,9 +68,9 @@ void	move_to_stackb(t_stack *stack)
 	n = 2;
 	while (n < GROUPS)
 	{
-		while ((n % 2) == 0 && stack->blen < PERGROUP * n)
+		while ((n % 2) == 0 && stack->blen < (stack->sortedlen / GROUPS) * n)
 		{
-			if (A_TOP < stack->pivot[n])
+			if (stack->a[0] < stack->pivot[n])
 				div_in_half(NONE, stack, stack->pivot[n - 1]);
 			else
 				ra(stack);
@@ -79,5 +79,6 @@ void	move_to_stackb(t_stack *stack)
 	}
 	while (0 < stack->alen)
 		div_in_half(NONE, stack, \
-		stack->sorted_arr[stack->sortedlen - (PERGROUP / 2)]);
+		stack->sorted_arr[stack->sortedlen \
+			- ((stack->sortedlen / GROUPS) / 2)]);
 }

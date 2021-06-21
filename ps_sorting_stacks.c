@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_pre_sorting.c                                   :+:      :+:    :+:   */
+/*   ps_sorting_stacks.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 04:59:29 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/21 05:55:27 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/21 21:43:21 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		search_fromtop(int fromtop, t_stack *stack, int tofind, int n)
 {
-	if (B_TOP < stack->pivot[n])
+	if (stack->b[0] < stack->pivot[n])
 		return (-1);
 	while (stack->pivot[n] <= stack->b[fromtop])
 	{
@@ -28,7 +28,7 @@ int		search_fromtop(int fromtop, t_stack *stack, int tofind, int n)
 
 int		search_frombottom(int frombottom, t_stack *stack, int tofind, int n)
 {
-	if (B_BOTTOM < stack->pivot[n])
+	if (stack->b[stack->blen - 1] < stack->pivot[n])
 		return (-1);
 	while (stack->pivot[n] <= stack->b[stack->blen - 1 - frombottom])
 	{
@@ -45,7 +45,7 @@ void (*till_tofind)(t_stack *stack))
 {
 	while (0 < tempidx--)
 		till_tofind(stack);
-	if (B_TOP == stack->sorted_arr[tofind])
+	if (stack->b[0] == stack->sorted_arr[tofind])
 	{
 		pa(stack);
 		tofind--;
@@ -79,10 +79,11 @@ void	sort_stacks(t_stack *stack, int tofind, int n)
 	tool = malloc(sizeof(t_sorting));
 	while (1 < stack->blen)
 	{
-		while (tofind && (stack->pivot[n] <= B_TOP \
-		|| stack->pivot[n] <= B_BOTTOM))
+		while (tofind && (stack->pivot[n] <= stack->b[0] \
+		|| stack->pivot[n] <= stack->b[stack->blen - 1]))
 		{
-			tool->frombottom = B_BOTTOM < stack->pivot[n] ? -1 : 0;
+			tool->frombottom = stack->b[stack->blen - 1] \
+				< stack->pivot[n] ? -1 : 0;
 			tool->fromtop = \
 				search_fromtop(tool->fromtop, stack, tofind, n);
 			tool->frombottom = \

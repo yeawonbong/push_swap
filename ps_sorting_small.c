@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 03:10:20 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/21 20:43:18 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/21 21:44:20 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	sort_three(t_stack *stack)
 		free_all(stack);
 		exit(EXIT_SUCCESS);
 	}
-	if (A_TOP == SORTED_BOTTOM)
+	if (stack->a[0] == stack->sorted_arr[stack->sortedlen - 1])
 		ra(stack);
-	else if (stack->a[1] == SORTED_BOTTOM)
+	else if (stack->a[1] == stack->sorted_arr[stack->sortedlen - 1])
 		rra(stack);
 	totop_if(SMALLER, stack, 'a');
 }
@@ -31,9 +31,9 @@ void	sort_five(t_stack *stack, int n)
 {
 	while (3 < stack->alen)
 	{
-		if (A_TOP == stack->sorted_arr[n]\
+		if (stack->a[0] == stack->sorted_arr[n]\
 		|| stack->a[1] == stack->sorted_arr[n]\
-		|| A_TOP == stack->sorted_arr[n + 1]\
+		|| stack->a[0] == stack->sorted_arr[n + 1]\
 		|| stack->a[1] == stack->sorted_arr[n + 1])
 		{
 			totop_if(SMALLER, stack, 'a');
@@ -55,7 +55,7 @@ void	sort_small_args(t_stack *stack)
 	pivot = stack->sortedlen - GROUPS;
 	while (GROUPS < stack->alen)
 	{
-		if (A_TOP < stack->sorted_arr[pivot])
+		if (stack->a[0] < stack->sorted_arr[pivot])
 			pb(stack);
 		else
 			ra(stack);
@@ -64,7 +64,7 @@ void	sort_small_args(t_stack *stack)
 	pivot--;
 	while (stack->blen)
 	{
-		if (B_TOP == stack->sorted_arr[pivot])
+		if (stack->b[0] == stack->sorted_arr[pivot])
 		{
 			pa(stack);
 			pivot--;
