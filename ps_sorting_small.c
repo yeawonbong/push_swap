@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 03:10:20 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/21 03:22:43 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/21 20:43:18 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 void	sort_three(t_stack *stack)
 {
 	if (stack->sortedlen < 3)
-		error_exit(stack);
+	{
+		totop_if(SMALLER, stack, 'a');
+		free_all(stack);
+		exit(EXIT_SUCCESS);
+	}
 	if (A_TOP == SORTED_BOTTOM)
 		ra(stack);
 	else if (stack->a[1] == SORTED_BOTTOM)

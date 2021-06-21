@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 23:16:38 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/21 20:08:36 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/21 20:41:01 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,10 @@ void	get_arg(int argc, char *argv[], t_stack *stack)
 
 	i = 1;
 	temp = 0;
-	if (argc < 2)
-		exit(EXIT_SUCCESS);
 	while (i < argc)
 	{
+		if (!*argv[i])
+			error_exit(stack);
 		j = 0;
 		temp = ft_split(argv[i++], ' ');
 		while (temp[j])
