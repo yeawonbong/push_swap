@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 23:16:38 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/21 05:43:10 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/21 20:08:36 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,52 @@ void	duplicates(t_stack *stack)
 	}
 }
 
+void	non_int(t_stack *stack, char **temp, int j)
+{
+	int	i;
+
+	i = 0;
+	while (temp[j][i])
+	{
+		if (temp[j][i] == '-')
+			i++;
+		if (!ft_isdigit(temp[j][i]))
+		{
+			free(temp[j]);
+			free(temp);
+			error_exit(stack);
+		}
+		i++;
+	}
+}
+
 void	atoi_error(t_stack *stack, int atoied, char *temp)
 {
 	char	*itoaed;
 
+	while (*temp == '0' && *(temp + 1))
+		temp++;
 	if (ft_strlen(itoaed = ft_itoa(atoied)) != ft_strlen(temp))
 	{
 		free(itoaed);
 		error_exit(stack);
 	}
 	free(itoaed);
+}
+
+int		cmp_arr(t_stack *stack)
+{
+	int	i;
+
+	i = 0;
+	while (i < stack->sortedlen)
+	{
+		if (stack->a[i] == stack->sorted_arr[i])
+			i++;
+		else
+			return (1);
+	}
+	return (0);
 }
 
 void	get_arg(int argc, char *argv[], t_stack *stack)
@@ -47,13 +83,14 @@ void	get_arg(int argc, char *argv[], t_stack *stack)
 	i = 1;
 	temp = 0;
 	if (argc < 2)
-		error_exit(stack);
+		exit(EXIT_SUCCESS);
 	while (i < argc)
 	{
 		j = 0;
 		temp = ft_split(argv[i++], ' ');
 		while (temp[j])
 		{
+			non_int(stack, temp, j);
 			atoi_error(stack, atoied = ft_atoi(temp[j]), temp[j]);
 			stack->a = add_back(stack->a, stack->alen, atoied);
 			(stack->alen)++;
@@ -63,32 +100,4 @@ void	get_arg(int argc, char *argv[], t_stack *stack)
 		free(temp);
 	}
 	sort_arg(stack, stack->alen);
-	duplicates(stack);
-}
-
-void	sort_arg(t_stack *stack, int size)
-{
-	int	*arr;
-	int	temp;
-	int	i;
-
-	i = 0;
-	if (!(arr = malloc(sizeof(int) * size)) || \
-	!ft_memcpy(arr, stack->a, sizeof(int) * size))
-		error_exit(stack);
-	while (i < size - 1)
-	{
-		if (arr[i] > arr[i + 1])
-		{
-			temp = arr[i];
-			arr[i] = arr[i + 1];
-			arr[i + 1] = temp;
-		}
-		if (i == 0 || arr[i - 1] <= arr[i])
-			i++;
-		else
-			i--;
-	}
-	stack->sorted_arr = arr;
-	stack->sortedlen = stack->alen;
 }

@@ -46,9 +46,10 @@ typedef struct 		s_sorting
 ** ps_get_arg.c
 */
 void    duplicates(t_stack *stack);
+void	non_int(t_stack *stack, char **temp, int j);
 void	atoi_error(t_stack *stack, int atoied, char *temp);
+int		cmp_arr(t_stack *stack);
 void	get_arg(int argc, char *argv[], t_stack *stack);
-void	sort_arg(t_stack *stack, int size);
 
 /*
 **	push_swap.c
@@ -71,6 +72,7 @@ void	tobottom_if(char tobottom, t_stack *stack, char stacknum);
 ** ps_sorting_prep.c
 */
 void	set_pivot(t_stack *stack);
+void	sort_arg(t_stack *stack, int size);
 void	div_in_half(char topb, t_stack *stack, int halfpivot);
 void	move_to_stackb(t_stack *stack);
 

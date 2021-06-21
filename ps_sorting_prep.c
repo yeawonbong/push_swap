@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 03:06:48 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/21 05:56:21 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/21 19:35:06 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,33 @@ void	set_pivot(t_stack *stack)
 		stack->pivot[n] = stack->sorted_arr[(PERGROUP) * n];
 		n++;
 	}
+}
+
+void	sort_arg(t_stack *stack, int size)
+{
+	int	*arr;
+	int	temp;
+	int	i;
+
+	i = 0;
+	if (!(arr = malloc(sizeof(int) * size)) || \
+	!ft_memcpy(arr, stack->a, sizeof(int) * size))
+		error_exit(stack);
+	while (i < size - 1)
+	{
+		if (arr[i] > arr[i + 1])
+		{
+			temp = arr[i];
+			arr[i] = arr[i + 1];
+			arr[i + 1] = temp;
+		}
+		if (i == 0 || arr[i - 1] <= arr[i])
+			i++;
+		else
+			i--;
+	}
+	stack->sorted_arr = arr;
+	stack->sortedlen = stack->alen;
 }
 
 void	div_in_half(char topb, t_stack *stack, int halfpivot)

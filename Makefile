@@ -16,6 +16,7 @@ NAME = push_swap.a
 OBJS = $(SRCS:.c=.o)
 LIBS = libft.a
 LIBS_DIR = ./libft_ps
+OUT = push_swap
 
 all : $(NAME)
 
@@ -23,6 +24,7 @@ $(NAME) : $(OBJS)
 	make all -C $(LIBS_DIR)	
 	@cp $(LIBS_DIR)/$(LIBS) $(NAME)
 	$(AR) $@ $(OBJS)
+	gcc $(CFLAGS) $(NAME) -o $(OUT)
 
 $(OBJS) : $(SRCS)
 	$(CC) $(CFLAGES) -c $(SRCS) -I libft_ps

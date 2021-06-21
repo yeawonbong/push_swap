@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 23:43:55 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/21 05:41:03 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/21 20:08:32 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ int		main(int argc, char *argv[])
 
 	stack = malloc(sizeof(t_stack));
 	get_arg(argc, argv, stack);
-	push_swap(stack);
+	duplicates(stack);
+	if (cmp_arr(stack))
+		push_swap(stack);
 	free_all(stack);
 	return (0);
 }
