@@ -6,11 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 23:43:55 by ybong             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/06/22 22:48:36 by ybong            ###   ########.fr       */
-=======
-/*   Updated: 2021/06/22 23:46:50 by ybong            ###   ########.fr       */
->>>>>>> lessgroup
+/*   Updated: 2021/06/23 00:09:02 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +23,6 @@ void	free_all(t_stack *stack)
 
 void	error_exit(void)
 {
-<<<<<<< HEAD
-	free_all(stack);
-=======
->>>>>>> lessgroup
 	write(2, "Error\n", 6);
 	exit(EXIT_FAILURE);
 }
@@ -65,7 +57,5 @@ int		main(int argc, char *argv[])
 	if (cmp_arr(stack))
 		push_swap(stack);
 	free_all(stack);
-	while(1)
-	{}
 	return (0);
 }
