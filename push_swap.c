@@ -6,12 +6,11 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 23:43:55 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/22 22:10:41 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/22 23:46:50 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 void	free_all(t_stack *stack)
 {
@@ -31,7 +30,7 @@ void	error_exit(void)
 void	push_swap(t_stack *stack)
 {
 	set_pivot(stack);
-	if (stack->sortedlen <= 3) //이럴때 정상종료로 만들어서 익싯 최소화 해보자.
+	if (stack->sortedlen <= 3)
 		sort_three(stack);
 	else if (stack->sortedlen < 10)
 		sort_small_args(stack);
@@ -48,6 +47,7 @@ int		main(int argc, char *argv[])
 
 	if (!(stack = malloc(sizeof(t_stack))))
 		return (0);
+	ft_memset(stack, 0, sizeof(t_stack));
 	get_arg(argc, argv, stack);
 	if (150 < stack->sortedlen)
 		stack->groups = 15;
@@ -57,6 +57,5 @@ int		main(int argc, char *argv[])
 	if (cmp_arr(stack))
 		push_swap(stack);
 	free_all(stack);
-	while(1){}
 	return (0);
 }

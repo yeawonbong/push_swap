@@ -6,13 +6,13 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 03:10:20 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/22 22:10:09 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/22 23:48:25 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		sort_three(t_stack *stack)
+void	sort_three(t_stack *stack)
 {
 	if (stack->sortedlen < 3)
 	{

@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 03:25:12 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/22 22:23:22 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/22 23:28:32 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,15 @@ int		*add_front(int *arr, int len, int new)
 {
 	int	*temp;
 
+	temp = malloc(sizeof(int) * (len + 1));
 	if (!arr)
-	{
-		temp = malloc(sizeof(int));
 		*temp = new;
-	}
 	else
 	{
-		temp = malloc(sizeof(int) * (len + 1));
 		ft_memmove(&temp[1], arr, sizeof(int) * len);
-		free(arr);
 		temp[0] = new;
 	}
+	free(arr);
 	return (temp);
 }
 
@@ -36,18 +33,15 @@ int		*add_back(int *arr, int len, int new)
 	int	*temp;
 
 	temp = NULL;
-	if (!arr)
-	{
-		temp = malloc(sizeof(int));
+	temp = malloc(sizeof(int) * (len + 1));
+	if (!len)
 		*temp = new;
-	}
 	else
 	{
-		temp = malloc(sizeof(int) * (len + 1));
 		temp = ft_memcpy(temp, arr, sizeof(int) * len);
-		free(arr);
 		temp[len] = new;
 	}
+	free(arr);
 	return (temp);
 }
 
