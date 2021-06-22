@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 23:43:55 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/21 20:51:46 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/22 17:11:42 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	free_all(t_stack *stack)
 void	error_exit(t_stack *stack)
 {
 	free_all(stack);
-	write(1, "Error\n", 6);
+	write(2, "Error\n", 6);
 	exit(EXIT_FAILURE);
 }
 
