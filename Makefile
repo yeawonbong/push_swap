@@ -34,9 +34,7 @@ clean :
 	make clean -C $(LIBS_DIR)
 
 fclean : clean
-	rm -f $(NAME)
-	rm -f $(OBJS)
-	rm -f *.out
+	rm -f $(NAME) $(OBJS) $(OUT)
 	make fclean -C $(LIBS_DIR)
 
 re : fclean all
