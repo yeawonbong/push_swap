@@ -1,0 +1,9 @@
+ARG=`jot -r 100 -2147483648 2147483647 | tr "\n" " "`
+num=`../push_swap/push_swap $ARG | wc -l`
+while [ "$num" -lt 800 ]
+do
+	ARG=`./random_numbers 100`
+	num=`../push_swap/push_swap $ARG | wc -l`
+	echo $num
+	#echo `./push_swap $ARG | ./checker $ARG`
+done
