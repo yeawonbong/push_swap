@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 20:55:40 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/21 05:49:44 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/22 19:01:26 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	ra(t_stack *stack)
 	sizeof(int) * (stack->alen - 1));
 	stack->a[stack->alen - 1] = temp;
 	write(1, "ra\n", 3);
-	stack->count++;
 }
 
 void	rb(t_stack *stack)
@@ -36,7 +35,6 @@ void	rb(t_stack *stack)
 	ft_memmove(stack->b, &stack->b[1], sizeof(int) * (stack->blen - 1));
 	stack->b[stack->blen - 1] = temp;
 	write(1, "rb\n", 3);
-	stack->count++;
 }
 
 void	rr(t_stack *stack)
@@ -60,5 +58,4 @@ void	rr(t_stack *stack)
 		stack->b[stack->blen - 1] = temp;
 	}
 	write(1, "rr\n", 3);
-	stack->count++;
 }

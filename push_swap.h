@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 21:23:21 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/21 21:42:28 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/22 19:05:04 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <unistd.h>
 
 # define ERROR 0
-# define GROUPS 5
 # define SMALLER 's'
 # define BIGGER 'b'
 # define NONE 'n'
@@ -32,8 +31,8 @@ typedef struct	s_stack
 	int		blen;
 	int		*sorted_arr;
 	int		sortedlen;
-	int		pivot[5];
-	int		count;
+	int		groups;
+	int		*pivot;
 }				t_stack;
 
 typedef struct	s_sorting

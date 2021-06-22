@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 03:06:48 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/21 21:43:38 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/22 19:10:33 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@ void	set_pivot(t_stack *stack)
 
 	stack->pivot[0] = stack->sorted_arr[0];
 	n = 1;
-	while (n < GROUPS)
+	while (n < stack->groups)
 	{
-		stack->pivot[n] = stack->sorted_arr[(stack->sortedlen / GROUPS) * n];
+		stack->pivot[n] = \
+			stack->sorted_arr[(stack->sortedlen / stack->groups) * n];
 		n++;
 	}
 }
@@ -66,9 +67,10 @@ void	move_to_stackb(t_stack *stack)
 	int	n;
 
 	n = 2;
-	while (n < GROUPS)
+	while (n < stack->groups)
 	{
-		while ((n % 2) == 0 && stack->blen < (stack->sortedlen / GROUPS) * n)
+		while ((n % 2) == 0 && stack->blen < \
+			(stack->sortedlen / stack->groups) * n)
 		{
 			if (stack->a[0] < stack->pivot[n])
 				div_in_half(NONE, stack, stack->pivot[n - 1]);
@@ -80,5 +82,5 @@ void	move_to_stackb(t_stack *stack)
 	while (0 < stack->alen)
 		div_in_half(NONE, stack, \
 		stack->sorted_arr[stack->sortedlen \
-			- ((stack->sortedlen / GROUPS) / 2)]);
+			- ((stack->sortedlen / stack->groups) / 2)]);
 }

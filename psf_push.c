@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 20:40:01 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/21 05:49:28 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/22 19:01:07 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	pa(t_stack *stack)
 	stack->blen--;
 	stack->alen++;
 	write(1, "pa\n", 3);
-	stack->count++;
 }
 
 void	pb(t_stack *stack)
@@ -39,5 +38,4 @@ void	pb(t_stack *stack)
 	stack->alen--;
 	stack->blen++;
 	write(1, "pb\n", 3);
-	stack->count++;
 }

@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 03:10:20 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/21 21:44:20 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/22 19:00:22 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void	sort_small_args(t_stack *stack)
 {
 	int pivot;
 
-	pivot = stack->sortedlen - GROUPS;
-	while (GROUPS < stack->alen)
+	pivot = stack->sortedlen - stack->groups;
+	while (stack->groups < stack->alen)
 	{
 		if (stack->a[0] < stack->sorted_arr[pivot])
 			pb(stack);

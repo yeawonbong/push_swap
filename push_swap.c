@@ -6,11 +6,12 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 23:43:55 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/21 20:51:46 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/22 19:11:07 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 void	free_all(t_stack *stack)
 {
@@ -37,7 +38,7 @@ void	push_swap(t_stack *stack)
 	else
 	{
 		move_to_stackb(stack);
-		sort_stacks(stack, stack->sortedlen - 1, GROUPS - 1);
+		sort_stacks(stack, stack->sortedlen - 1, stack->groups - 1);
 	}
 }
 
@@ -45,8 +46,14 @@ int		main(int argc, char *argv[])
 {
 	static	t_stack	*stack;
 
-	stack = malloc(sizeof(t_stack));
+	if (!(stack = malloc(sizeof(t_stack))))
+		return (0);
 	get_arg(argc, argv, stack);
+	// if (150 < stack->sortedlen)
+	// 	stack->groups = 20;
+	// else
+		stack->groups = 5;
+	printf("%d", stack->groups);
 	duplicates(stack);
 	if (cmp_arr(stack))
 		push_swap(stack);
