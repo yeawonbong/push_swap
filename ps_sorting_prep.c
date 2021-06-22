@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 03:06:48 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/22 19:10:33 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/22 19:37:55 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	set_pivot(t_stack *stack)
 {
 	int n;
 
+	if (!(stack->pivot = malloc(sizeof(int) * stack->groups)))
+		error_exit();
 	stack->pivot[0] = stack->sorted_arr[0];
 	n = 1;
 	while (n < stack->groups)
@@ -35,7 +37,7 @@ void	sort_arg(t_stack *stack, int size)
 	i = 0;
 	if (!(arr = malloc(sizeof(int) * size)) || \
 	!ft_memcpy(arr, stack->a, sizeof(int) * size))
-		error_exit(stack);
+		error_exit();
 	while (i < size - 1)
 	{
 		if (arr[i] > arr[i + 1])

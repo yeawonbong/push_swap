@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 21:23:21 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/22 19:05:04 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/22 19:39:42 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ typedef struct	s_sorting
 ** ps_get_arg.c
 */
 void			duplicates(t_stack *stack);
-void			non_int(t_stack *stack, char **temp, int j);
-void			atoi_error(t_stack *stack, int atoied, char *temp);
+void			non_int(char **temp, int j);
+void			atoi_error(int atoied, char *temp);
 int				cmp_arr(t_stack *stack);
 void			get_arg(int argc, char *argv[], t_stack *stack);
 
@@ -56,7 +56,7 @@ void			get_arg(int argc, char *argv[], t_stack *stack);
 **	push_swap.c
 */
 void			free_all(t_stack *stack);
-void			error_exit(t_stack *stack);
+void			error_exit();
 void			push_swap(t_stack *stack);
 int				main(int argc, char *argv[]);
 

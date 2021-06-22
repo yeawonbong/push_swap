@@ -6,13 +6,13 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 03:10:20 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/22 19:00:22 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/22 19:50:16 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_three(t_stack *stack)
+void		sort_three(t_stack *stack)
 {
 	if (stack->sortedlen < 3)
 	{
@@ -25,6 +25,7 @@ void	sort_three(t_stack *stack)
 	else if (stack->a[1] == stack->sorted_arr[stack->sortedlen - 1])
 		rra(stack);
 	totop_if(SMALLER, stack, 'a');
+	// return (0)
 }
 
 void	sort_five(t_stack *stack, int n)

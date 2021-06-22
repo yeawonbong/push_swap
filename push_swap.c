@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 23:43:55 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/22 19:11:07 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/22 19:50:41 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,20 @@ void	free_all(t_stack *stack)
 	free(stack->a);
 	free(stack->b);
 	free(stack->sorted_arr);
+	free(stack->pivot);
 	free(stack);
 }
 
-void	error_exit(t_stack *stack)
+void	error_exit(void)
 {
-	free_all(stack);
-	write(1, "Error\n", 6);
+	write(2, "Error\n", 6);
 	exit(EXIT_FAILURE);
 }
 
 void	push_swap(t_stack *stack)
 {
 	set_pivot(stack);
-	if (stack->sortedlen <= 3)
+	if (stack->sortedlen <= 3) //이럴때 정상종료로 만들어서 익싯 최소화 해보자.
 		sort_three(stack);
 	else if (stack->sortedlen < 10)
 		sort_small_args(stack);
@@ -49,11 +49,10 @@ int		main(int argc, char *argv[])
 	if (!(stack = malloc(sizeof(t_stack))))
 		return (0);
 	get_arg(argc, argv, stack);
-	// if (150 < stack->sortedlen)
-	// 	stack->groups = 20;
-	// else
+	if (150 < stack->sortedlen)
+		stack->groups = 15;
+	else
 		stack->groups = 5;
-	printf("%d", stack->groups);
 	duplicates(stack);
 	if (cmp_arr(stack))
 		push_swap(stack);
