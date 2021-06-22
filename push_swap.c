@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 23:43:55 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/22 19:50:41 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/22 22:10:41 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,6 @@ int		main(int argc, char *argv[])
 	if (cmp_arr(stack))
 		push_swap(stack);
 	free_all(stack);
+	while(1){}
 	return (0);
 }

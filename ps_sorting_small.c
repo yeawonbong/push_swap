@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 03:10:20 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/22 19:50:16 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/22 22:10:09 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void		sort_three(t_stack *stack)
 	else if (stack->a[1] == stack->sorted_arr[stack->sortedlen - 1])
 		rra(stack);
 	totop_if(SMALLER, stack, 'a');
-	// return (0)
 }
 
 void	sort_five(t_stack *stack, int n)

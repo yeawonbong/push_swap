@@ -24,7 +24,7 @@ $(NAME) : $(OBJS)
 	make all -C $(LIBS_DIR)	
 	@cp $(LIBS_DIR)/$(LIBS) $(NAME)
 	$(AR) $@ $(OBJS)
-	gcc $(CFLAGS) $(NAME) -o $(OUT)
+	$(CC) $(CFLAGS) $(NAME) -o $(OUT)
 
 $(OBJS) : $(SRCS)
 	$(CC) $(CFLAGES) -c $(SRCS) -I libft_ps
