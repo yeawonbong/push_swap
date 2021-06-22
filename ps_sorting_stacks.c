@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 04:59:29 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/21 21:43:21 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/22 22:49:02 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,5 @@ void	sort_stacks(t_stack *stack, int tofind, int n)
 		n--;
 	}
 	pa(stack);
+	free(tool);
 }
