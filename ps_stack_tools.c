@@ -6,7 +6,11 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 03:25:12 by ybong             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/06/22 22:42:50 by ybong            ###   ########.fr       */
+=======
+/*   Updated: 2021/06/22 23:28:32 by ybong            ###   ########.fr       */
+>>>>>>> lessgroup
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +20,21 @@ int		*add_front(int *arr, int len, int new)
 {
 	int	*temp;
 
+<<<<<<< HEAD
 	temp = NULL;
+=======
+	temp = malloc(sizeof(int) * (len + 1));
+>>>>>>> lessgroup
 	if (!arr)
-	{
-		temp = malloc(sizeof(int));
 		*temp = new;
-	}
 	else
 	{
+<<<<<<< HEAD
 		temp = malloc(sizeof(int) * (len + 1));
 		ft_memcpy(&temp[1], arr, sizeof(int) * len);
+=======
+		ft_memmove(&temp[1], arr, sizeof(int) * len);
+>>>>>>> lessgroup
 		temp[0] = new;
 	}
 	free(arr);
@@ -37,14 +46,11 @@ int		*add_back(int *arr, int len, int new)
 	int	*temp;
 
 	temp = NULL;
-	if (!arr)
-	{
-		temp = malloc(sizeof(int));
+	temp = malloc(sizeof(int) * (len + 1));
+	if (!len)
 		*temp = new;
-	}
 	else
 	{
-		temp = malloc(sizeof(int) * (len + 1));
 		temp = ft_memcpy(temp, arr, sizeof(int) * len);
 		temp[len] = new;
 	}

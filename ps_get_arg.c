@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 23:16:38 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/21 20:49:43 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/22 23:46:28 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ void	duplicates(t_stack *stack)
 	while (i < stack->sortedlen)
 	{
 		if (stack->sorted_arr[i] == stack->sorted_arr[i - 1])
-			error_exit(stack);
+			error_exit();
 		i++;
 	}
 }
 
-void	non_int(t_stack *stack, char **temp, int j)
+void	non_int(char **temp, int j)
 {
 	int	i;
 
@@ -38,13 +38,13 @@ void	non_int(t_stack *stack, char **temp, int j)
 		{
 			free(temp[j]);
 			free(temp);
-			error_exit(stack);
+			error_exit();
 		}
 		i++;
 	}
 }
 
-void	atoi_error(t_stack *stack, int atoied, char *temp)
+void	atoi_error(int atoied, char *temp)
 {
 	char	*itoaed;
 
@@ -53,7 +53,7 @@ void	atoi_error(t_stack *stack, int atoied, char *temp)
 	if (ft_strlen(itoaed = ft_itoa(atoied)) != ft_strlen(temp))
 	{
 		free(itoaed);
-		error_exit(stack);
+		error_exit();
 	}
 	free(itoaed);
 }
@@ -85,13 +85,13 @@ void	get_arg(int argc, char *argv[], t_stack *stack)
 	while (i < argc)
 	{
 		if (!*argv[i])
-			error_exit(stack);
+			error_exit();
 		j = 0;
 		temp = ft_split(argv[i++], ' ');
 		while (temp[j])
 		{
-			non_int(stack, temp, j);
-			atoi_error(stack, atoied = ft_atoi(temp[j]), temp[j]);
+			non_int(temp, j);
+			atoi_error(atoied = ft_atoi(temp[j]), temp[j]);
 			stack->a = add_back(stack->a, stack->alen, atoied);
 			(stack->alen)++;
 			free(temp[j]);

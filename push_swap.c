@@ -6,7 +6,11 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 23:43:55 by ybong             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/06/22 22:48:36 by ybong            ###   ########.fr       */
+=======
+/*   Updated: 2021/06/22 23:46:50 by ybong            ###   ########.fr       */
+>>>>>>> lessgroup
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +21,16 @@ void	free_all(t_stack *stack)
 	free(stack->a);
 	free(stack->b);
 	free(stack->sorted_arr);
+	free(stack->pivot);
 	free(stack);
 }
 
-void	error_exit(t_stack *stack)
+void	error_exit(void)
 {
+<<<<<<< HEAD
 	free_all(stack);
+=======
+>>>>>>> lessgroup
 	write(2, "Error\n", 6);
 	exit(EXIT_FAILURE);
 }
@@ -37,7 +45,7 @@ void	push_swap(t_stack *stack)
 	else
 	{
 		move_to_stackb(stack);
-		sort_stacks(stack, stack->sortedlen - 1, GROUPS - 1);
+		sort_stacks(stack, stack->sortedlen - 1, stack->groups - 1);
 	}
 }
 
@@ -45,8 +53,14 @@ int		main(int argc, char *argv[])
 {
 	static	t_stack	*stack;
 
-	stack = malloc(sizeof(t_stack));
+	if (!(stack = malloc(sizeof(t_stack))))
+		return (0);
+	ft_memset(stack, 0, sizeof(t_stack));
 	get_arg(argc, argv, stack);
+	if (150 < stack->sortedlen)
+		stack->groups = 15;
+	else
+		stack->groups = 5;
 	duplicates(stack);
 	if (cmp_arr(stack))
 		push_swap(stack);
